@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>HPmilk Products</title>
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+.top{height:211px;border:0;width:100%;display:block}
+.main{height:calc(100% - 289px);min-height:200px;border:0;width:100%;display:block;overflow:auto}
+.bottom{height:78px;border:0;width:100%;display:block}
+</style>
+
+<style>
+/* Product photo carousel: desktop Chrome */
+.product-photo-carousel{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;width:min(100%,360px);margin:8px auto;clear:both;box-sizing:border-box;}
+.product-photo-carousel .pp-stage{width:100%;height:230px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#17191b;border-radius:12px;}
+.product-photo-carousel .pp-stage a{display:none;width:100%;height:100%;align-items:center;justify-content:center;}
+.product-photo-carousel .pp-stage a.pp-active{display:flex;}
+.product-photo-carousel .pp-stage img{display:block!important;float:none!important;width:auto!important;height:auto!important;max-width:100%!important;max-height:100%!important;object-fit:contain;margin:0 auto!important;border:0;}
+.product-photo-carousel .pp-dots{display:flex;justify-content:center;align-items:center;gap:8px;margin:12px 0 4px;}
+.product-photo-carousel .pp-dot{width:10px;height:10px;padding:0;border:0;border-radius:50%;background:#85898d;cursor:pointer;}
+.product-photo-carousel .pp-dot.pp-current{background:#159df5;box-shadow:0 0 7px #159df5;}
+.product-photo-carousel .pp-stage>img{display:none!important;}
+@media(min-width:700px){.product-photo-carousel .pp-stage{height:230px;}}
+
+/* Large-image viewer: same product photos can be browsed in the enlarged view */
+.pp-lightbox{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;padding:56px 64px;box-sizing:border-box;}
+.pp-lightbox.pp-open{display:flex;}
+.pp-lightbox img{display:block;max-width:100%;max-height:calc(100vh - 125px);width:auto;height:auto;object-fit:contain;box-shadow:0 4px 24px rgba(0,0,0,.35);}
+.pp-lb-close,.pp-lb-prev,.pp-lb-next{position:absolute;border:0;color:#fff;background:rgba(60,60,60,.75);cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%;font-family:Arial,sans-serif;}
+.pp-lb-close{top:16px;right:20px;width:44px;height:44px;font-size:30px;}
+.pp-lb-prev,.pp-lb-next{top:50%;transform:translateY(-50%);width:48px;height:58px;border-radius:12px;font-size:36px;}
+.pp-lb-prev{left:12px}.pp-lb-next{right:12px}
+.pp-lb-dots{position:absolute;bottom:18px;left:0;right:0;display:flex;justify-content:center;gap:9px;}
+.pp-lb-dot{width:11px;height:11px;border:0;padding:0;border-radius:50%;background:#85898d;cursor:pointer;}
+.pp-lb-dot.pp-current{background:#159df5;box-shadow:0 0 8px #159df5;}
+@media(max-width:600px){.pp-lightbox{padding:55px 48px}.pp-lb-prev,.pp-lb-next{width:38px;height:48px;font-size:29px}.pp-lb-prev{left:5px}.pp-lb-next{right:5px}}
+</style>
+
+
+<style>
+/* HPmilk modern product gallery */
+:root{color-scheme:dark}
+html,body{background:#111416;color:#f3f5f7;font-family:Arial,Helvetica,sans-serif}
+.main{background:#111416;padding:0 0 28px;box-sizing:border-box}
+.main > table:last-of-type{
+  width:min(94%,1280px)!important;margin:24px auto 34px!important;
+  border:0!important;border-collapse:separate!important;border-spacing:0!important;
+  table-layout:fixed
+}
+.main > table:last-of-type tbody{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px
+}
+.main > table:last-of-type tr{display:contents}
+.main > table:last-of-type td{
+  width:auto!important;min-width:0;box-sizing:border-box;display:flex;
+  flex-direction:column;align-items:center;justify-content:flex-start;
+  position:relative;overflow:hidden;min-height:0;padding:12px!important;
+  background:#22272b;border:1px solid #2c3338!important;border-radius:22px;
+  color:#eef2f5;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.18);
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease
+}
+.main > table:last-of-type td:hover{
+  transform:translateY(-3px);border-color:#168fe0!important;
+  box-shadow:0 10px 26px rgba(0,0,0,.28)
+}
+.main > table:last-of-type td p{margin:5px 0!important;padding:0!important;width:100%;text-align:center!important;line-height:1.35}
+.main > table:last-of-type td p:empty{display:none!important}
+.main > table:last-of-type td img{
+  float:none!important;display:block!important;max-width:100%!important;
+  width:auto!important;height:auto!important;max-height:220px!important;
+  object-fit:contain;margin:4px auto!important;border:0;border-radius:10px
+}
+.main > table:last-of-type td a{max-width:100%;display:block;margin:0 auto}
+/* Keep single-photo products (including 1, 2, 3, 5, 6 and 7) aligned with carousel cards */
+.main > table:last-of-type td > a > img{
+  display:block!important;width:100%!important;height:155px!important;max-height:none!important;
+  object-fit:contain!important;background:#151719;border-radius:14px;padding:5px;
+  box-sizing:border-box;margin:0 auto 8px!important
+}
+.main > table:last-of-type .product-photo-carousel{width:100%;max-width:100%;margin:0 auto 8px}
+.main > table:last-of-type .pp-stage{
+  height:155px;background:#151719;border-radius:14px;width:100%
+}
+.main > table:last-of-type .pp-stage img{
+  max-width:100%!important;max-height:100%!important;width:auto!important;height:auto!important;
+  object-fit:contain;border-radius:10px
+}
+.main > table:last-of-type .pp-dots{margin:10px 0 6px}
+.main > table:last-of-type .pp-dot{width:10px;height:10px;background:#777f86}
+.main > table:last-of-type .pp-dot.pp-current{background:#159df5;box-shadow:0 0 8px #159df5}
+.main > table:last-of-type td p:last-child{color:#aab8c2}
+/* Product numbers are moved to a consistent footer at the bottom of each card */
+.main > table:last-of-type td{height:100%;}
+.main > table:last-of-type td .product-number{
+  display:block;width:100%;margin:auto 0 0!important;padding-top:10px!important;
+  color:#aab8c2!important;font-size:15px;line-height:1.2;text-align:center!important;
+  flex:0 0 auto;box-sizing:border-box
+}
+.main > table:last-of-type .pp-stage{height:155px!important;min-height:155px;flex:0 0 155px}
+.main > table:last-of-type .product-photo-carousel{flex:0 0 auto}
+.video-gallery{width:min(92%,1050px);margin:26px auto}
+.video-card{background:#22272b!important;border-color:#30383e!important;border-radius:16px!important}
+@media(max-width:1050px){
+ .main > table:last-of-type tbody{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+ .main > table:last-of-type td{padding:12px!important}
+}
+@media(max-width:700px){
+ .main > table:last-of-type{width:92%!important;margin:18px auto 26px!important}
+ .main > table:last-of-type tbody{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .main > table:last-of-type td{min-height:0;padding:9px!important;border-radius:20px}
+ .main > table:last-of-type .pp-stage{height:135px}
+ .main > table:last-of-type td > a > img{height:135px!important}
+ .main > table:last-of-type td img{height:135px!important;max-height:none!important}
+ .main > table:last-of-type .pp-stage{height:135px!important;min-height:135px;flex-basis:135px}
+}
+@media(max-width:380px){
+ .main > table:last-of-type tbody{gap:9px}
+ .main > table:last-of-type td{padding:8px!important}
+ .main > table:last-of-type .pp-stage{height:120px}
+ .main > table:last-of-type td > a > img,
+ .main > table:last-of-type td p > a > img{height:120px!important}
+ .main > table:last-of-type .pp-stage{height:120px!important;min-height:120px;flex-basis:120px}
+}
+</style>
+
+<style>
+/* Final image-frame normalization: every product uses the same image area */
+.main > table:last-of-type td .product-photo-carousel,
+.main > table:last-of-type td p > a:has(> img),
+.main > table:last-of-type td > a:has(> img){
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:100%!important;max-width:100%!important;height:155px!important;min-height:155px!important;
+  box-sizing:border-box!important;margin:0 auto 8px!important;overflow:hidden!important;
+  background:#151719!important;border-radius:14px!important;padding:5px!important;
+}
+.main > table:last-of-type td p > a > img,
+.main > table:last-of-type td > a > img,
+.main > table:last-of-type td .pp-stage img{
+  display:block!important;float:none!important;width:100%!important;height:100%!important;
+  max-width:100%!important;max-height:100%!important;object-fit:contain!important;
+  box-sizing:border-box!important;margin:0 auto!important;border:0!important;border-radius:8px!important;
+}
+.main > table:last-of-type td .pp-stage{
+  width:100%!important;height:100%!important;min-height:0!important;flex:1 1 auto!important;
+  background:transparent!important;border-radius:8px!important;
+}
+.main > table:last-of-type td .product-photo-carousel{height:155px!important;min-height:155px!important;flex:0 0 155px!important;padding:0!important;background:transparent!important;overflow:visible!important}
+.main > table:last-of-type td .pp-dots{margin:9px 0 5px!important}
+.main > table:last-of-type td .product-number{margin-top:auto!important}
+@media(max-width:700px){
+ .main > table:last-of-type td .product-photo-carousel,
+ .main > table:last-of-type td p > a:has(> img),
+ .main > table:last-of-type td > a:has(> img){height:135px!important;min-height:135px!important}
+ .main > table:last-of-type td .product-photo-carousel{height:135px!important;min-height:135px!important;flex-basis:135px!important}
+}
+@media(max-width:380px){
+ .main > table:last-of-type td .product-photo-carousel,
+ .main > table:last-of-type td p > a:has(> img),
+ .main > table:last-of-type td > a:has(> img){height:120px!important;min-height:120px!important}
+ .main > table:last-of-type td .product-photo-carousel{height:120px!important;min-height:120px!important;flex-basis:120px!important}
+}
+</style>
+
+<style>
+/* HPmilk simple order cart test */
+.hp-cart-launch{position:fixed;z-index:10000;left:50%;right:auto;transform:translateX(-50%);bottom:22px;border:0;border-radius:999px;background:#159df5;color:#fff;font:700 15px Arial,sans-serif;padding:13px 18px;box-shadow:0 5px 22px #0008;cursor:pointer}
+.hp-cart-launch .hp-cart-count{display:inline-flex;min-width:22px;height:22px;align-items:center;justify-content:center;margin-left:7px;border-radius:50%;background:#fff;color:#147fc5;font-size:12px}
+.hp-cart-shade{position:fixed;inset:0;z-index:10001;display:none;align-items:center;justify-content:center;padding:16px;background:#000a;box-sizing:border-box}
+.hp-cart-shade.hp-open{display:flex}
+.hp-cart-panel{width:min(100%,620px);max-height:92vh;overflow:auto;box-sizing:border-box;background:#1c2227;color:#f5f7f8;border:1px solid #3b454d;border-radius:20px;padding:22px;font:15px Arial,sans-serif;box-shadow:0 15px 55px #0009}
+.hp-cart-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.hp-cart-head h2{font-size:22px;margin:0}
+.hp-cart-x{border:0;border-radius:50%;width:38px;height:38px;font-size:26px;background:#343c42;color:#fff;cursor:pointer}
+.hp-cart-empty{color:#b8c5cc;padding:15px 0}
+.hp-cart-item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #374149}
+.hp-cart-item-title{font-weight:700;line-height:1.4}
+.hp-cart-item small{display:block;color:#aebbc3;margin-top:4px}
+.hp-cart-qty{display:flex;align-items:center;gap:7px}
+.hp-cart-qty button,.hp-cart-remove{border:0;border-radius:8px;background:#303a42;color:#fff;padding:7px 10px;cursor:pointer}
+.hp-cart-remove{color:#ffb4b4}
+.hp-cart-form{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:18px}
+.hp-cart-form label{display:flex;flex-direction:column;gap:6px;color:#cbd4da;font-size:13px}
+.hp-cart-form input,.hp-cart-form textarea{width:100%;box-sizing:border-box;border:1px solid #46535c;border-radius:9px;padding:11px;background:#111619;color:#fff;font:14px Arial,sans-serif}
+.hp-cart-form textarea{min-height:74px;resize:vertical}.hp-cart-wide{grid-column:1/-1}
+.hp-cart-total{font-weight:700;color:#f0c879;margin-top:15px}
+.hp-cart-note{color:#aebbc3;font-size:12px;line-height:1.5;margin:12px 0}
+.hp-cart-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
+.hp-cart-actions button{flex:1;min-width:180px;border:0;border-radius:10px;padding:13px 14px;font-weight:700;cursor:pointer}
+.hp-cart-email{background:#159df5;color:#fff}.hp-cart-wa{background:#1b9b63;color:#fff}
+.hp-add-button{display:block;width:100%;margin:12px auto 2px;padding:10px 8px;border:0;border-radius:10px;background:#159df5;color:#fff;font-weight:700;cursor:pointer;font-size:14px}
+.hp-add-button:hover,.hp-cart-launch:hover{filter:brightness(1.08)}
+@media(max-width:520px){.hp-cart-panel{padding:16px;border-radius:16px}.hp-cart-form{grid-template-columns:1fr}.hp-cart-wide{grid-column:auto}.hp-cart-item{grid-template-columns:minmax(0,1fr) auto}.hp-cart-remove{grid-column:1/-1;justify-self:end}.hp-cart-launch{left:50%;right:auto;transform:translateX(-50%);bottom:14px;padding:11px 14px}}
+</style>
+
+</head>
+<body>
+<iframe class="top" frameborder="0" scrolling="no" src="products_files/top.htm" target="_top"></iframe>
+<div class="main">
+<br/><br/><br/>
+<table align="center" border="0" cellpadding="0" cellspacing="0" valign="TOP" width="80%">
+<tbody>
+<tr>
+<td rowspan="2">
+<a target="_blank" href="products_files/Automatic%20parlours/Industrial%20Pump%20Skid%20Assembly%20Line.png">
+<img border="0" height="168" src="products_files/85.jpg" width="270"/></a></td>
+<td rowspan="2"><img alt="" border="0" height="1" src="products_files/spacer.gif" width="7"/></td>
+<td valign="top" width="100%"><b>VACUUM PUMPS FOR MILKING 
+      MACHINES</b><br/><br/>Our vane pump range goes from 200 litres per min to 
+      3100 litres/min at 50 Kpa.<br/>We can supply the vacuum units complete with 
+      tank or base with or without electric motor or the pump only complete with 
+      accessories or just the pump alone.</td></tr>
+<tr>
+<td valign="bottom">We also have a stock of spares and accessories for milking 
+    systems.<br/><br/></td></tr></tbody></table>
+<style type="text/css">
+.video-gallery{width:92%;max-width:1050px;margin:24px auto 32px;font-family:Arial,Helvetica,sans-serif;}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;}
+.video-card{box-sizing:border-box;background:#f7f9fc;border:1px solid #dbe3ec;border-radius:12px;padding:14px;text-align:center;box-shadow:0 3px 10px rgba(20,45,70,.08);}
+.video-card video{display:block;width:100%;background:#111;border-radius:8px;aspect-ratio:4/3;object-fit:contain;}
+.video-download{display:inline-block;margin-top:12px;padding:10px 20px;background:#1769aa;color:#fff!important;text-decoration:none!important;font-weight:bold;border-radius:7px;border:1px solid #12578e;}
+.video-download:hover{background:#0e548b;}
+.video-note{font-size:12px;color:#526273;margin-top:8px;}
+.auto-style1 {
+	border-width: 0px;
+}
+</style>
+<div class="video-gallery">
+<div class="video-grid">
+<div class="video-card">
+<video controls="" playsinline="" preload="metadata">
+<source src="products_files/videos/Movie%20pictures.mp4" type="video/mp4"/>
+        Your browser does not support MP4 video playback.
+      </video>
+</div>
+<div class="video-card">
+<video controls="" playsinline="" preload="metadata">
+<source src="products_files/videos/Movie_01.mp4" type="video/mp4"/>
+        Your browser does not support MP4 video playback.
+      </video>
+</div>
+<div class="video-card">
+<video controls="" playsinline="" preload="metadata">
+<source src="products_files/videos/Movie_02.mp4" type="video/mp4"/>Your browser does not support MP4 video playback.
+      </video>
+</div>
+</div>
+</div>
+<table border="1" cellspacing="1" width="100%">
+<tr>
+<td width="33%">
+<p align="center">
+&nbsp;<p align="center">
+<a href="products_files/mobile_milking_machines/40.4.htm" target="_blank">
+<img border="0" height="207" src="products_files/1.gif" width="250"/></a><p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    1</p></p></td>
+<td width="21%">
+<p align="center">
+&nbsp;<p align="center">
+<a href="products_files/mobile_milking_machines/40.8.htm" target="_blank">
+<img border="0" height="210" src="products_files/2.gif" width="250"/></a><p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    2</p></p></td>
+<td width="9%">
+<p align="center">
+&nbsp;<p align="center">
+<a href="products_files/mobile_milking_machines/80.8.htm" target="_blank">
+<img border="0" height="207" src="products_files/4.gif" width="250"/></a><p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    3</p></p></td>
+<td width="38%">
+<p align="center">
+<a target="_blank" href="products_files/Automatic%20parlours/westfalıa-parlour.BMP">
+<img border="0" height="96" src="products_files/7.jpg" width="150" align="left"/></a><a href="products_files/Automatic%20parlours/wf-Recorders-parlour.BMP"><img border="0" src="products_files/8.bmp" width="150" height="111" align="left"></a><p align="center">
+    <a href="products_files/Automatic%20parlours/Receıver-50Lparlour.BMP">
+    <img border="0" src="products_files/9.BMP" width="150" height="112" align="left"><img border="0" src="products_files/10.bmp" width="150" height="123" align="left"></a><a href="products_files/Automatic%20parlours/Vacuum%20gage-parlour.BMP"><img border="0" src="products_files/11.BMP" width="150" height="112" align="left"></a><img border="0" src="products_files/Screenshot_20260925_190544_Instagram.jpg" width="150" height="151" align="left"></p>
+<p align="center">
+    <img border="0" src="products_files/Screenshot_20260925_190819_Instagram.jpg" width="150" height="150" align="left"></p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    4</p></p></td>
+</tr>
+<tr>
+<td width="33%">
+<p align="center">
+<a href="products_files/mobile_milking_machines/SYM%2040.8%20Electric%20&%20Petrol%20milker%20machine.htm" target="_blank">
+<img border="0" height="207" src="products_files/3.gif" width="250"/></a><p align="center">
+    5</p></p></td>
+<td width="21%">
+<p align="center">
+<a href="products_files/mobile_milking_machines/ssm%2040.8%20milker%20for%20parlour.htm" target="_blank">
+<img border="0" height="207" src="products_files/5.gif" width="250"/></a><p align="center">
+    6</p></p></td>
+<td width="9%">
+<p align="center">
+<a href="products_files/mobile_milking_machines/SSM%2030.4.htm" target="_blank">
+<img border="0" height="207" src="products_files/6.gif" width="250"/></a><p align="center">
+    7</p></p></td>
+<td width="38%">
+<p align="center">
+<a href="products_files/Automatic%20parlours/8bıg.jpg" target="_blank">
+<img border="0" src="products_files/8bıg.jpg" width="100" height="93" align="left"></a><p align="center">
+    <img border="0" src="products_files/metin16.jpg" width="150" height="112" align="left"><img border="0" src="products_files/Screenshot_20260925_190911_Instagram.jpg" width="150" height="148" align="left"><img border="0" src="products_files/Screenshot_20260925_190929_Instagram.jpg" width="150" height="148" align="left"></p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    8</p>&nbsp;</p></td>
+</tr>
+<tr>
+<td width="33%">
+<p align="center">
+<a target="_blank" href="products_files/Automatic%20parlours/milking%20machine%20Recorder%2028%20Litres.jpg">
+<img border="0" height="123" src="products_files/25.jpg" width="100" align="left"/></a><img border="0" src="products_files/Screenshot_20260921_144434_Facebook.jpg" width="150" height="183" align="left"><p align="center">
+<img border="0" src="products_files/03.jpg" width="150" height="200" align="left"><p align="center">
+<img border="0" src="products_files/165440.jpg" width="150" height="200" align="left"><p align="center">
+<img border="0" src="products_files/Screenshot_20260810_071757_Gallery.jpg" width="100" height="222" align="left"><p align="center">
+&nbsp;<p align="center">
+&nbsp;<p align="center">
+&nbsp;<p align="center">
+&nbsp;<p align="center">
+&nbsp;<p align="center">
+&nbsp;<p align="center">
+9<p>&nbsp;</p></td>
+<td width="21%">
+<p align="center">
+<a href="products_files/Automatic%20parlours/Receiver-32L.jpg" target="_blank">
+<img border="0" src="products_files/Receiver-32L.jpg" width="200" height="264"></a><p align="center">
+    10</p></p></td>
+<td width="9%">
+<p align="center">
+<a href="products_files/Automatic%20parlours/01.jpg" target="_blank">
+<img border="0" src="products_files/Automatic%20parlours/01.jpg" width="200" height="266"></a><p align="center">
+    11</p></p></td>
+<td width="38%">
+<p align="center">
+<a href="products_files/Automatic%20parlours/Receıver-50L-Westfalıa.jpg" target="_blank">
+<img border="0" src="products_files/Receıver-50L-Westfalıa.jpg" width="150" height="219" align="left"></a><p align="center">
+    <img border="0" src="products_files/Recıver-50L-WF.jpg" width="150" height="112" align="left"></p>
+<p align="center">
+    <img border="0" src="products_files/R_50L-WF.jpg" width="150" height="200" align="left" hspace="0"></p>
+<p align="center">
+    <img border="0" src="products_files/Packıng_R-50L_WF.jpg" width="150" height="200" align="left"></p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    12</p></p></td>
+</tr>
+<tr>
+<td width="33%">
+<p align="center">
+<a href="products_files/Automatic%20parlours/m13.jpg" target="_blank">
+<img border="0" src="products_files/m13.jpg" width="150" height="201" align="left"></a><img border="0" src="products_files/Screenshot_20260921_144322_Facebook.jpg" width="150" height="201" align="left"><p align="center">
+    <img border="0" src="products_files/26.jpg" width="150" height="184" align="left"><img border="0" src="products_files/27.jpg" width="150" height="139" align="left"></p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    13</p>&nbsp;</p></td>
+<td width="21%">
+<p align="center">
+<a href="products_files/Automatic%20parlours/L1.jpg" target="_blank">
+<img border="0" src="products_files/Automatic%20parlours/L1.jpg" width="150" height="270"></a><p align="center">
+    14</p></p></td>
+<td width="9%">
+<p align="center">
+<a href="products_files/Automatic%20parlours/L2.jpg" target="_blank">
+<img border="0" src="products_files/Automatic%20parlours/L2.jpg" width="100" height="181"></a><p align="center">
+    &nbsp;</p>
+<p align="center">
+    15</p></p></td>
+<td width="38%">
+<p align="center">
+<a href="products_files/Automatic%20parlours/L3.jpg" target="_blank">
+<img border="0" src="products_files/Automatic%20parlours/L3.jpg" width="100" height="167"></a><p align="center">
+    &nbsp;</p>
+<p align="center">
+    16</p></p></td>
+</tr>
+<tr>
+<td width="33%">
+<p align="center">
+<a href="products_files/Automatic%20parlours/p14.jpg" target="_blank">
+<img border="0" src="products_files/p14.jpg" width="150" height="150" align="left"></a><p align="center">
+    <img border="0" src="products_files/Screenshot_20260921_143830_Facebook.jpg" width="150" height="85" align="left"></p>
+<p align="center">
+    <img border="0" src="products_files/Screenshot_20260921_143900_Facebook.jpg" width="150" height="85" align="left"></p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    <img border="0" src="products_files/Screenshot_20260921_143845_Facebook.jpg" width="150" height="83" align="left"><img border="0" src="products_files/Screenshot_20260921_144403_Facebook.jpg" width="150" height="114" align="left"><img border="0" src="products_files/Screenshot_20260921_144338_Facebook.jpg" width="150" height="243" align="left"><img border="0" src="products_files/Screenshot_20260925_190835_Instagram.jpg" width="150" height="151" align="left"></p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    17</p>&nbsp;</p></td>
+<td width="21%">
+<p align="center">
+&nbsp;<p align="center">
+    <a href="products_files/Automatic%20parlours/v-p-1500.jpg">
+    <img border="0" src="products_files/v-p-1500.jpg" width="200" height="328" align="left" hspace="0"></a></p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    <a href="products_files/Automatic%20parlours/Parlour-vacuum%20pump-%20on%20Tank.jpg">
+    <img alt="" height="206" src="products_files/28.jpg" width="200" class="auto-style1"></a></p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    18</p>&nbsp;</p></td>
+<td width="9%">
+<p align="center">
+&nbsp;<p align="center">
+    <a href="products_files/Automatic%20parlours/v-p-2200.jpg">
+    <img border="0" src="products_files/v-p-2200.jpg" width="200" height="326" align="left"></a><p align="center">
+&nbsp;<p align="center">
+&nbsp;<p>
+<a href="products_files/Automatic%20parlours/Parlour-vacuum%20pump-%20on%20Tank.jpg">
+<img alt="" class="auto-style1" height="206" src="products_files/28.jpg" width="200"></a></p>
+<p>
+&nbsp;</p>
+<p>
+&nbsp;</p>
+<p align="center">
+&nbsp;</p>
+<p align="center">
+19</p></td>
+<td width="38%">
+<p align="center">
+&nbsp;<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    <a href="products_files/Automatic%20parlours/v-p-3300.jpg">
+    <img border="0" src="products_files/v-p-3300.jpg" width="200" height="308" align="left"></a></p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    <a href="products_files/Automatic%20parlours/Parlour-vacuum%20pump-%20on%20Tank.jpg">
+	<img alt="" class="auto-style1" height="206" src="products_files/28.jpg" style="float: left" width="200"></a></p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    &nbsp;</p>
+<p align="center">
+    20</p>
+	</td>
+</tr>
+<tr>
+<td width="33%">
+<p align="center"><!-- عکس محصول 21 را اینجا اضافه کنید -->
+<a target="_blank" href="products_files/Automatic%20parlours/milk.jpg">
+<img border="0" height="234" src="products_files/32.jpg" width="300"/></a></p>
+<p align="center">&nbsp;</p>
+<p align="center">21</p>
+</td>
+<td width="21%">
+<p align="center"><!-- عکس محصول 22 را اینجا اضافه کنید -->
+<a href="products_files/Automatic%20parlours/30.bmp">
+<img border="0" src="products_files/30.bmp" width="300" height="229" align="left"></a></p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;22</p>
+</td>
+<td width="9%">
+<p align="center"><!-- عکس محصول 23 را اینجا اضافه کنید --><a href="products_files/Automatic%20parlours/31.bmp">
+<img border="0" src="products_files/31.bmp" width="300" height="229" align="left"></a></p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">23</p>
+</td>
+<td width="38%">
+<p align="center"><!-- عکس محصول 24 را اینجا اضافه کنید --></p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">24</p>
+</td>
+</tr>
+</table>
+</div>
+<p>
+<iframe class="bottom" frameborder="0" scrolling="no" src="products_files/bottom.htm"></iframe>
+</p>
+
+<script>
+(function(){
+  var lightbox, lbImage, lbDots, lbSlides=[], lbIndex=0;
+  function createLightbox(){
+    if(lightbox)return;
+    lightbox=document.createElement('div'); lightbox.className='pp-lightbox'; lightbox.setAttribute('role','dialog'); lightbox.setAttribute('aria-modal','true'); lightbox.setAttribute('aria-label','نمایش بزرگ تصاویر محصول');
+    lbImage=document.createElement('img'); lbImage.alt='تصویر بزرگ محصول';
+    var close=document.createElement('button'); close.className='pp-lb-close'; close.type='button'; close.innerHTML='&times;'; close.setAttribute('aria-label','بستن'); close.onclick=closeLightbox;
+    var prev=document.createElement('button'); prev.className='pp-lb-prev'; prev.type='button'; prev.innerHTML='&#8249;'; prev.setAttribute('aria-label','عکس قبلی'); prev.onclick=function(){showLarge(lbIndex-1);};
+    var next=document.createElement('button'); next.className='pp-lb-next'; next.type='button'; next.innerHTML='&#8250;'; next.setAttribute('aria-label','عکس بعدی'); next.onclick=function(){showLarge(lbIndex+1);};
+    lbDots=document.createElement('div'); lbDots.className='pp-lb-dots';
+    lightbox.appendChild(lbImage); lightbox.appendChild(prev); lightbox.appendChild(next); lightbox.appendChild(close); lightbox.appendChild(lbDots);
+    lightbox.addEventListener('click',function(e){if(e.target===lightbox)closeLightbox();});
+    document.body.appendChild(lightbox);
+  }
+  function showLarge(index){
+    if(!lbSlides.length)return;
+    lbIndex=(index+lbSlides.length)%lbSlides.length;
+    lbImage.src=lbSlides[lbIndex].src; lbImage.alt=lbSlides[lbIndex].alt||'تصویر '+(lbIndex+1);
+    Array.from(lbDots.children).forEach(function(d,i){d.classList.toggle('pp-current',i===lbIndex);});
+  }
+  function openLightbox(slides,index){
+    createLightbox(); lbSlides=slides; lbIndex=index; lbDots.innerHTML='';
+    slides.forEach(function(slide,i){var d=document.createElement('button');d.type='button';d.className='pp-lb-dot'+(i===index?' pp-current':'');d.setAttribute('aria-label','نمایش عکس '+(i+1));d.onclick=function(){showLarge(i);};lbDots.appendChild(d);});
+    showLarge(index); lightbox.classList.add('pp-open'); document.addEventListener('keydown',onKey); document.body.style.overflow='hidden';
+  }
+  function closeLightbox(){if(!lightbox)return;lightbox.classList.remove('pp-open');document.removeEventListener('keydown',onKey);document.body.style.overflow='';}
+  function onKey(e){if(e.key==='Escape')closeLightbox();else if(e.key==='ArrowLeft')showLarge(lbIndex+1);else if(e.key==='ArrowRight')showLarge(lbIndex-1);}
+
+  function openGalleryTab(slides,index){
+    var win=window.open('about:blank','_blank');
+    if(!win){ alert('لطفاً اجازه باز شدن تب جدید (Pop-ups) را در مرورگر فعال کنید.'); return; }
+    var data=JSON.stringify(slides).replace(/</g,'\\u003c');
+    var start=Math.max(0,Math.min(index,slides.length-1));
+    var html='<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HPmilk - Product Photos</title>'+
+      '<style>*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#111;color:#fff;font-family:Arial,sans-serif}body{display:flex;align-items:center;justify-content:center;overflow:hidden}.photo{max-width:calc(100vw - 140px);max-height:calc(100vh - 100px);object-fit:contain}.nav{position:fixed;top:50%;transform:translateY(-50%);border:0;border-radius:10px;background:#444c;color:white;font-size:40px;width:52px;height:64px;cursor:pointer}.prev{left:14px}.next{right:14px}.close{position:fixed;right:16px;top:14px;border:0;border-radius:50%;width:44px;height:44px;background:#444c;color:white;font-size:28px;cursor:pointer}.dots{position:fixed;bottom:18px;display:flex;gap:9px;justify-content:center;width:100%}.dot{border:0;width:11px;height:11px;padding:0;border-radius:50%;background:#888;cursor:pointer}.dot.on{background:#159df5;box-shadow:0 0 7px #159df5}.count{position:fixed;top:22px;left:20px;color:#ddd;font-size:14px}@media(max-width:600px){.photo{max-width:calc(100vw - 80px);max-height:calc(100vh - 100px)}.nav{width:36px;height:48px;font-size:28px}.prev{left:4px}.next{right:4px}}</style></head><body>'+
+      '<img class="photo" id="photo" alt=""><button class="nav prev" id="prev" aria-label="Previous">&#8249;</button><button class="nav next" id="next" aria-label="Next">&#8250;</button><button class="close" id="close" aria-label="Close">&times;</button><div class="count" id="count"></div><div class="dots" id="dots"></div>'+
+      '<script>var slides='+data+',i='+start+';var photo=document.getElementById("photo"),dots=document.getElementById("dots");function show(n){i=(n+slides.length)%slides.length;photo.src=slides[i].src;photo.alt=slides[i].alt||"Product photo "+(i+1);document.getElementById("count").textContent=(i+1)+" / "+slides.length;Array.from(dots.children).forEach(function(d,j){d.classList.toggle("on",j===i)});}slides.forEach(function(s,j){var d=document.createElement("button");d.className="dot";d.setAttribute("aria-label","Photo "+(j+1));d.onclick=function(){show(j)};dots.appendChild(d)});document.getElementById("prev").onclick=function(){show(i-1)};document.getElementById("next").onclick=function(){show(i+1)};document.getElementById("close").onclick=function(){window.close()};document.addEventListener("keydown",function(e){if(e.key==="ArrowLeft")show(i+1);if(e.key==="ArrowRight")show(i-1);if(e.key==="Escape")window.close()});show(i);<\/script></body></html>';
+    win.document.open(); win.document.write(html); win.document.close();
+  }
+
+  function setupProductCarousels(){
+    var tables=document.querySelectorAll('table'); if(tables.length<2)return;
+    var grid=tables[1];
+    grid.querySelectorAll('td').forEach(function(td){
+      if(td.querySelector('.product-photo-carousel'))return;
+      var imgs=Array.from(td.querySelectorAll('img')).filter(function(img){return !/spacer\.gif/i.test(img.getAttribute('src')||'');});
+      var units=[];
+      imgs.forEach(function(img){var a=img.closest('a');var unit=(a&&td.contains(a))?a:img;if(!units.includes(unit))units.push(unit);});
+      if(units.length<2){
+        /* Single-image product links open in the same viewer with the close button only. */
+        units.forEach(function(unit){
+          if(unit.tagName.toLowerCase()!=='a')return;
+          var img=unit.querySelector('img');
+          if(!img || !/\.(jpe?g|png|gif|bmp|webp)(?:[?#].*)?$/i.test(unit.href||''))return;
+          unit.removeAttribute('target');
+          unit.addEventListener('click',function(e){
+            e.preventDefault();
+            openGalleryTab([{src:unit.href,alt:img.alt||'Product photo'}],0);
+          });
+        });
+        return;
+      }
+      var carousel=document.createElement('div');carousel.className='product-photo-carousel';
+      var stage=document.createElement('div');stage.className='pp-stage';var dots=document.createElement('div');dots.className='pp-dots';
+      var largeSlides=[];
+      units.forEach(function(unit,index){
+        var link;
+        if(unit.tagName.toLowerCase()==='a')link=unit;
+        else{link=document.createElement('a');link.href=unit.getAttribute('src')||'#';link.appendChild(unit);}
+        var img=link.querySelector('img');
+        largeSlides.push({src:link.getAttribute('href')&&link.getAttribute('href')!=='#'?link.href:(img?img.src:''),alt:img?img.alt:''});
+        link.removeAttribute('target');link.classList.add('pp-slide');link.style.display='none';
+        link.addEventListener('click',function(e){e.preventDefault();openGalleryTab(largeSlides,index);});
+        stage.appendChild(link);
+        var dot=document.createElement('button');dot.type='button';dot.className='pp-dot'+(index===0?' pp-current':'');dot.setAttribute('aria-label','نمایش عکس '+(index+1));dot.addEventListener('click',function(){show(index);});dots.appendChild(dot);
+      });
+      function show(index){Array.from(stage.children).forEach(function(slide,i){slide.classList.toggle('pp-active',i===index);slide.style.display=i===index?'flex':'none';});Array.from(dots.children).forEach(function(dot,i){dot.classList.toggle('pp-current',i===index);});}
+      carousel.appendChild(stage);carousel.appendChild(dots);td.insertBefore(carousel,td.firstChild);show(0);
+    });
+    /* Remove empty paragraphs left behind when legacy table images are moved into carousels. */
+    grid.querySelectorAll('td p').forEach(function(p){
+      if(!p.textContent.trim() && !p.querySelector('img,a,video,iframe,button')) p.remove();
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setupProductCarousels);else setupProductCarousels();
+})();
+</script>
+
+
+<script>
+/* Align product numbers across each grid row and normalize image frame heights. */
+(function(){
+  function alignProductCards(){
+    var table=document.querySelector('.main > table:last-of-type');
+    if(!table)return;
+    table.querySelectorAll('td').forEach(function(td){
+      if(td.querySelector('.product-number'))return;
+      var candidates=Array.from(td.querySelectorAll('p')).filter(function(p){
+        return /^\d{1,2}$/.test((p.textContent||'').trim()) && !p.querySelector('img,a,video');
+      });
+      if(!candidates.length)return;
+      var number=candidates[candidates.length-1].textContent.trim();
+      candidates.forEach(function(p){p.remove();});
+      var footer=document.createElement('div');
+      footer.className='product-number';
+      footer.textContent=number;
+      td.appendChild(footer);
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',alignProductCards);
+  else alignProductCards();
+})();
+</script>
+
+
+<script>
+/* Lightweight cart for static HTML: no payment is taken; order is sent by email or WhatsApp. */
+(function(){
+  var CART_KEY='hpmilk_order_cart_v1';
+  var cart={};
+  try{cart=JSON.parse(localStorage.getItem(CART_KEY)||'{}')||{};}catch(e){cart={};}
+  function save(){try{localStorage.setItem(CART_KEY,JSON.stringify(cart));}catch(e){} render();}
+  function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  var launch=document.createElement('button');launch.type='button';launch.className='hp-cart-launch';launch.innerHTML='🛒 سبد سفارش <span class="hp-cart-count">0</span>';launch.setAttribute('aria-label','باز کردن سبد سفارش');document.body.appendChild(launch);
+  var shade=document.createElement('div');shade.className='hp-cart-shade';shade.innerHTML='<section class="hp-cart-panel" role="dialog" aria-modal="true" aria-labelledby="hp-cart-title"><div class="hp-cart-head"><h2 id="hp-cart-title">سبد سفارش HPmilk</h2><button type="button" class="hp-cart-x" aria-label="بستن">×</button></div><div class="hp-cart-items"></div><div class="hp-cart-total"></div><div class="hp-cart-note">قیمت نهایی و هزینه ارسال فعلاً به‌صورت دستی با فروشنده هماهنگ می‌شود. با ارسال سفارش، پرداختی انجام نمی‌شود.</div><form class="hp-cart-form"><label>نام و نام خانوادگی *<input name="customer" required autocomplete="name" placeholder="نام شما"></label><label>ایمیل<input name="email" type="email" autocomplete="email" placeholder="name@example.com"></label><label>تلفن / واتساپ<input name="phone" type="tel" autocomplete="tel" placeholder="شماره تماس"></label><label>کشور / شهر<input name="location" autocomplete="country-name" placeholder="کشور و شهر"></label><label class="hp-cart-wide">آدرس یا توضیحات سفارش<textarea name="notes" placeholder="آدرس تحویل، مشخصات یا سؤال درباره محصول"></textarea></label><div class="hp-cart-wide hp-cart-actions"><button type="button" class="hp-cart-email">ارسال سفارش با ایمیل</button><button type="button" class="hp-cart-wa">ارسال سفارش با واتساپ</button></div></form></section>';
+  document.body.appendChild(shade);
+  var itemsEl=shade.querySelector('.hp-cart-items'),totalEl=shade.querySelector('.hp-cart-total'),countEl=launch.querySelector('.hp-cart-count');
+  function entries(){return Object.keys(cart).map(function(k){return cart[k];}).filter(function(x){return x&&x.qty>0;});}
+  function render(){var all=entries(),count=all.reduce(function(s,x){return s+x.qty;},0);countEl.textContent=count;
+    if(!all.length){itemsEl.innerHTML='<div class="hp-cart-empty">سبد سفارش خالی است. از کارت هر محصول روی «افزودن به سفارش» بزن.</div>';totalEl.textContent='';}
+    else{itemsEl.innerHTML=all.map(function(x){return '<div class="hp-cart-item"><div class="hp-cart-item-title">'+esc(x.name)+'<small>قیمت: پس از تأیید اعلام می‌شود</small></div><div class="hp-cart-qty"><button type="button" data-act="minus" data-id="'+esc(x.id)+'" aria-label="کم کردن">−</button><b>'+x.qty+'</b><button type="button" data-act="plus" data-id="'+esc(x.id)+'" aria-label="زیاد کردن">+</button></div><button type="button" class="hp-cart-remove" data-act="remove" data-id="'+esc(x.id)+'">حذف</button></div>';}).join('');totalEl.textContent='مجموع تعداد محصولات: '+count+' · قیمت نهایی با فروشنده هماهنگ می‌شود';}
+  }
+  function add(id,name){if(!cart[id])cart[id]={id:id,name:name,qty:0};cart[id].qty++;save();launch.animate&&launch.animate([{transform:'scale(1)'},{transform:'scale(1.04)'},{transform:'scale(1)'}],{duration:220});}
+  function getOrder(){var form=shade.querySelector('form');if(!form.reportValidity())return null;var f=new FormData(form),all=entries();if(!all.length){alert('ابتدا حداقل یک محصول به سبد اضافه کن.');return null;}return 'HPmilk - سفارش جدید\n\n'+all.map(function(x){return '- '+x.name+' | تعداد: '+x.qty+' | قیمت: توافقی';}).join('\n')+'\n\nنام: '+(f.get('customer')||'')+'\nایمیل: '+(f.get('email')||'')+'\nتلفن/واتساپ: '+(f.get('phone')||'')+'\nکشور/شهر: '+(f.get('location')||'')+'\nتوضیحات: '+(f.get('notes')||'')+'\n\nلطفاً قیمت نهایی و هزینه ارسال را اعلام کنید.';}
+  launch.addEventListener('click',function(){shade.classList.add('hp-open');});shade.querySelector('.hp-cart-x').addEventListener('click',function(){shade.classList.remove('hp-open');});shade.addEventListener('click',function(e){if(e.target===shade)shade.classList.remove('hp-open');});document.addEventListener('keydown',function(e){if(e.key==='Escape')shade.classList.remove('hp-open');});
+  itemsEl.addEventListener('click',function(e){var b=e.target.closest('button[data-act]');if(!b)return;var id=b.getAttribute('data-id');if(!cart[id])return;var act=b.getAttribute('data-act');if(act==='plus')cart[id].qty++;else if(act==='minus')cart[id].qty--;else if(act==='remove')cart[id].qty=0;if(cart[id].qty<=0)delete cart[id];save();});
+  shade.querySelector('.hp-cart-email').addEventListener('click',function(){var msg=getOrder();if(!msg)return;window.location.href='mailto:hpmilk.tr@gmail.com?subject='+encodeURIComponent('HPmilk product order')+'&body='+encodeURIComponent(msg);});
+  shade.querySelector('.hp-cart-wa').addEventListener('click',function(){var msg=getOrder();if(!msg)return;window.open('https://wa.me/905316216031?text='+encodeURIComponent(msg),'_blank','noopener');});
+  function setupButtons(){var table=document.querySelector('.main > table:last-of-type');if(!table)return;table.querySelectorAll('td').forEach(function(td){var numberEl=td.querySelector('.product-number');if(!numberEl||td.querySelector('.hp-add-button'))return;var n=(numberEl.textContent||'').trim();if(!/^\d+$/.test(n))return;var img=td.querySelector('.product-photo-carousel img, a img, img');var alt=img?(img.getAttribute('alt')||'').trim():'';var name='محصول شماره '+n+(alt&&alt.toLowerCase()!=='image'?' - '+alt:'');var b=document.createElement('button');b.type='button';b.className='hp-add-button';b.textContent='افزودن به سفارش';b.addEventListener('click',function(){add(n,name);launch.querySelector('.hp-cart-count').textContent=entries().reduce(function(s,x){return s+x.qty;},0);b.textContent='✓ اضافه شد';setTimeout(function(){b.textContent='افزودن به سفارش';},1200);});td.appendChild(b);});}
+  function init(){setupButtons();render();}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(init,0);});else setTimeout(init,0);
+})();
+</script>
+
+</body>
+</html>
