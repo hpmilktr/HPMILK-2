@@ -200,5 +200,43 @@ height=145 cellSpacing=0 cellPadding=0 width="30%" border=0>
  document.getElementById('hp-detail-cart').addEventListener('click',function(){send({hpmilkCart:'request'});});
  window.addEventListener('focus',function(){send({hpmilkCart:'request'});});
 })();
-</script></body></HTML><!--�ӧ�Yb����RĻ|�M��0�A�)(�[=^�Lt�0r��F��[(r(V����B�ᆰ�SuHd����*I�9��23�iF��S���=XTH��u��N�#���JŹ�!��ݦ��I}ձ��⿾N���*�p�)���y�ҡ-��7x5ʑኽ�pT��S��A�a���=E����ߘ��#CS�)4k�zY8�x��?J��E��ܓ�_�[�������O��K�S���!q���ؗ�d9L�n����Ҟ䢞]�*g��&�|I2�}��(�:2Bnf�D�-
+</script>
+<!-- HPmilk: mobile text visibility for both legacy table ID variants -->
+<style>
+@media(max-width:700px){
+  :is(#table1,#AutoNumber4) > tbody > tr:first-child > td,
+  :is(#table1,#AutoNumber4) > tbody > tr:last-child > td {
+    background:#20252a!important;background-image:none!important;
+    color:#fff!important;text-align:center!important;
+    height:auto!important;min-height:56px!important;
+    padding:14px 12px!important;box-sizing:border-box!important;
+    border:1px solid #626a70!important;
+    white-space:normal!important;overflow-wrap:anywhere!important;
+    font:bold clamp(17px,4.8vw,23px)/1.4 Arial,Helvetica,sans-serif!important;
+  }
+  :is(#table1,#AutoNumber4) > tbody > tr:first-child > td *,
+  :is(#table1,#AutoNumber4) > tbody > tr:last-child > td * {
+    color:#fff!important;font:inherit!important;
+    text-shadow:none!important;opacity:1!important;visibility:visible!important;
+    white-space:normal!important;overflow-wrap:anywhere!important;
+  }
+}
+</style>
+<script>
+(function(){
+ function clean(){
+  var t=document.getElementById('table1')||document.getElementById('AutoNumber4');
+  if(!t)return;
+  var body=t.tBodies&&t.tBodies[0];if(!body)return;
+  var rows=Array.from(body.children).filter(function(x){return x.tagName==='TR';});
+  [rows[0],rows[rows.length-1]].forEach(function(row){
+   if(!row)return;
+   var walker=document.createTreeWalker(row,NodeFilter.SHOW_TEXT,null),node;
+   while(node=walker.nextNode())node.nodeValue=node.nodeValue.replace(/\u00a0+/g,' ').replace(/ {2,}/g,' ');
+  });
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean);else clean();
+})();
+</script>
+</body></HTML><!--�ӧ�Yb����RĻ|�M��0�A�)(�[=^�Lt�0r��F��[(r(V����B�ᆰ�SuHd����*I�9��23�iF��S���=XTH��u��N�#���JŹ�!��ݦ��I}ձ��⿾N���*�p�)���y�ҡ-��7x5ʑኽ�pT��S��A�a���=E����ߘ��#CS�)4k�zY8�x��?J��E��ܓ�_�[�������O��K�S���!q���ؗ�d9L�n����Ҟ䢞]�*g��&�|I2�}��(�:2Bnf�D�-
 �+]]����ڒ,�t�C��;����ez0a��R�����������O��S_�����-->
