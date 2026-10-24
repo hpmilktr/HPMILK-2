@@ -221,6 +221,23 @@ html,body{background:#111416;color:#f3f5f7;font-family:Arial,Helvetica,sans-seri
 }
 @media(max-width:380px){.hp-gallery-actions button{font-size:14px!important;}}
 </style>
+<style>
+
+@media(max-width:700px){
+ html,body{width:100%!important;max-width:100%!important;overflow:hidden!important;}
+ iframe.top{height:135px!important;}
+ .main{height:calc(100dvh - 195px)!important;min-height:0!important;overflow-x:hidden!important;overflow-y:auto!important;padding:12px 0 20px!important;}
+ iframe.bottom{height:60px!important;}
+ .main>br{display:none!important;}
+ .main>table:first-of-type{display:block!important;width:94%!important;max-width:94%!important;margin:12px auto 20px!important;table-layout:auto!important;}
+ .main>table:first-of-type>tbody,.main>table:first-of-type>tbody>tr{display:block!important;width:100%!important;}
+ .main>table:first-of-type>tbody>tr>td{display:block!important;width:100%!important;max-width:100%!important;height:auto!important;box-sizing:border-box!important;text-align:left!important;line-height:1.6!important;padding:6px!important;overflow-wrap:anywhere!important;}
+ .main>table:first-of-type>tbody>tr>td:has(>img[src*="spacer"]){display:none!important;}
+ .main>table:first-of-type img:not([src*="spacer"]){display:block!important;float:none!important;max-width:100%!important;width:auto!important;height:auto!important;margin:0 auto!important;}
+ .main>table:last-of-type{max-width:96%!important;}
+}
+
+</style>
 </head>
 <body>
 <iframe class="top" frameborder="0" scrolling="no" src="products_files/top.htm" target="_top"></iframe>
