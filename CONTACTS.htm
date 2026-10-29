@@ -35,7 +35,30 @@ html,body{margin:0;padding:0;width:100%;background:#111416;color:#f4f5f6;}
 }
 
 </style>
-<style id="hp-no-cart-on-this-page">#hp-desktop-cart,#hp-mobile-nav,.hp-cart-launch,.hp-cart-shade,.hp-cart-float,.hp-cart-button{display:none!important}</style></head><body>
+<style id="hp-no-cart-on-this-page">#hp-desktop-cart,#hp-mobile-nav,.hp-cart-launch,.hp-cart-shade,.hp-cart-float,.hp-cart-button{display:none!important}</style>
+<style id="hp-contact-icon-links-style">
+/* Three contact shortcuts in the empty area below the Contact details. */
+.hp-contact-shortcuts{
+  display:flex; justify-content:center; align-items:center;
+  gap:clamp(18px,5vw,36px); margin:clamp(65px,11vh,135px) auto 85px;
+  padding:0 14px; width:100%; max-width:620px; box-sizing:border-box;
+}
+.hp-contact-shortcuts a{
+  display:flex; align-items:center; justify-content:center;
+  flex:0 1 110px; width:min(25vw,110px); height:min(25vw,110px);
+  max-width:110px; max-height:110px; min-width:70px; min-height:70px;
+  text-decoration:none!important; border-radius:27%;
+  transition:transform .15s ease, filter .15s ease;
+}
+.hp-contact-shortcuts a:hover{transform:translateY(-3px);filter:brightness(1.05)}
+.hp-contact-shortcuts a:focus-visible{outline:3px solid #fff;outline-offset:4px}
+.hp-contact-shortcuts img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;margin:0!important;border:0!important}
+@media(max-width:700px){
+ .hp-contact-shortcuts{gap:clamp(18px,6vw,40px);margin:clamp(65px,13vh,130px) auto 100px;}
+ .hp-contact-shortcuts a{width:min(25vw,105px);height:min(25vw,105px)}
+}
+</style>
+</head><body>
 <div class="hp-top-region">
 <table align="center" background="CONTACTS_files/top_files/top_backgrnd.gif" border="0" cellpadding="0" cellspacing="0" valign="TOP" width="100%">
 <tbody>
@@ -124,6 +147,12 @@ html,body{margin:0;padding:0;width:100%;background:#111416;color:#f4f5f6;}
 <td><input type="reset" value="Reset"/></td>
 <td><img alt="" border="0" height="1" src="" width="25"/></td>
 <td><input type="submit" value="Send"/></td></tr></tbody></table></td></tr></tbody></table></form></td></tr></tbody></table></div>
+
+<div class="hp-contact-shortcuts" role="group" aria-label="Contact options">
+ <a href="tel:+905316216031" aria-label="Call HPmilk" title="Phone"><img src="hp-contact-icons/phone.svg" alt="Phone" loading="lazy"></a>
+ <a href="mailto:hpmilk.tr@gmail.com" aria-label="Email HPmilk" title="Email"><img src="hp-contact-icons/email.svg" alt="Email" loading="lazy"></a>
+ <a href="https://wa.me/905316216031" aria-label="WhatsApp HPmilk" title="WhatsApp" target="_blank" rel="noopener noreferrer"><img src="hp-contact-icons/whatsapp.svg" alt="WhatsApp" loading="lazy"></a>
+</div>
 <div class="hp-bottom-region">
 <table align="center" background="CONTACTS_files/bottom_files/bot_backgrnd.gif" border="0" cellpadding="0" cellspacing="0" valign="TOP" width="100%">
 <tbody>
