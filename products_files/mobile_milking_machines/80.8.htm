@@ -182,10 +182,10 @@ html body .hp-detail-quantity input.hp-qty-input::-webkit-outer-spin-button {
 }
 </style>
 
-<meta name="color-scheme" content="only light"/>
+
 <style id="hp-number-field-mobile-final">
 /* Keep the number field white even on Android browsers using dark themes. */
-html { color-scheme:only light!important; }
+
 .hp-detail-quantity input.qnumber {
  display:block!important;appearance:none!important;-webkit-appearance:none!important;
  background-color:#ffffff!important;background-image:linear-gradient(#ffffff,#ffffff)!important;
@@ -200,7 +200,51 @@ html { color-scheme:only light!important; }
  color:#111111!important;-webkit-text-fill-color:#111111!important;
 }
 </style>
-</head>
+<
+<style id="hp-repair-black-page-white-counter">
+/* Keep dark product pages; do not apply a light color scheme to the page. */
+@media(max-width:700px) {
+  html, html body, html body.hp-detail-fit {
+    background:#111111!important;
+    background-color:#111111!important;
+  }
+}
+/* An inset white fill covers the old dark field background, even if another
+   legacy input rule is applied afterward. The blue surrounding card remains intact. */
+html body .hp-detail-actions .hp-detail-quantity input.qnumber,
+html body .hp-detail-actions .hp-detail-quantity input.hp-qty-input {
+  background-color:#ffffff!important;
+  background-image:linear-gradient(#fff,#fff)!important;
+  box-shadow:inset 0 0 0 100px #ffffff!important;
+  -webkit-box-shadow:inset 0 0 0 100px #ffffff!important;
+  color:#111111!important;
+  -webkit-text-fill-color:#111111!important;
+  caret-color:#111111!important;
+  color-scheme:light!important;
+  forced-color-adjust:none!important;
+  opacity:1!important;
+}
+</style>
+<script id="hp-repair-white-counter-runtime">
+(function(){
+ function apply(){
+   var fields=document.querySelectorAll('.hp-detail-quantity input.qnumber');
+   fields.forEach(function(el){
+     el.style.setProperty('background','#fff','important');
+     el.style.setProperty('background-image','linear-gradient(#fff,#fff)','important');
+     el.style.setProperty('box-shadow','inset 0 0 0 100px #fff','important');
+     el.style.setProperty('-webkit-box-shadow','inset 0 0 0 100px #fff','important');
+     el.style.setProperty('color','#111','important');
+     el.style.setProperty('-webkit-text-fill-color','#111','important');
+     el.style.setProperty('color-scheme','light','important');
+   });
+ }
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',apply);
+ else apply();
+ window.addEventListener('pageshow',apply);
+})();
+</script>
+/head>
 <body>
 <style type="text/css">
 /* Close control for standalone product detail pages */
