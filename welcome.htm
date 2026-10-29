@@ -36,7 +36,20 @@ html,body{margin:0;padding:0;width:100%;background:#fff;}
 }
 
 </style>
-<style id="hp-no-cart-on-this-page">#hp-desktop-cart,#hp-mobile-nav,.hp-cart-launch,.hp-cart-shade,.hp-cart-float,.hp-cart-button{display:none!important}</style></head><body>
+<style id="hp-no-cart-on-this-page">#hp-desktop-cart,#hp-mobile-nav,.hp-cart-launch,.hp-cart-shade,.hp-cart-float,.hp-cart-button{display:none!important}</style>
+<style id="hp-restore-original-about-appearance">
+/* Restore the original light About Us page without touching product pages. */
+@media (max-width:700px) {
+  html, body { background:#fff!important; color:#111!important; }
+  .hp-main-region { background:#fff!important; color:#111!important; }
+  .hp-main-region .hp-translated-block,
+  .hp-main-region .hp-translated-block *,
+  .hp-main-region td, .hp-main-region p,
+  .hp-main-region font { color:#111!important; text-shadow:none!important; }
+  .hp-main-region a { color:#164c80!important; }
+}
+</style>
+</head><body>
 <div class="hp-top-region">
 <table align="center" background="welcome_files/top_files/top_backgrnd.gif" border="0" cellpadding="0" cellspacing="0" valign="TOP" width="100%">
 <tbody>
