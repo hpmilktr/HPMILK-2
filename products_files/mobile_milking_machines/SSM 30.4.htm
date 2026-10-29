@@ -210,6 +210,25 @@ html body .hp-detail-quantity input.hp-qty-input::-webkit-outer-spin-button {
 -webkit-appearance:none;margin:0;
 }
 </style>
+
+<meta name="color-scheme" content="only light"/>
+<style id="hp-number-field-mobile-final">
+/* Keep the number field white even on Android browsers using dark themes. */
+html { color-scheme:only light!important; }
+.hp-detail-quantity input.qnumber {
+ display:block!important;appearance:none!important;-webkit-appearance:none!important;
+ background-color:#ffffff!important;background-image:linear-gradient(#ffffff,#ffffff)!important;
+ color:#111111!important;-webkit-text-fill-color:#111111!important;
+ color-scheme:only light!important;forced-color-adjust:none!important;
+ border:1px solid #cbd5e1!important;outline-color:#159df5!important;
+ opacity:1!important;text-align:center!important;border-radius:7px!important;
+ box-sizing:border-box!important;caret-color:#111111!important;
+}
+.hp-detail-quantity input.qnumber:focus,.hp-detail-quantity input.qnumber:active {
+ background-color:#ffffff!important;background-image:linear-gradient(#ffffff,#ffffff)!important;
+ color:#111111!important;-webkit-text-fill-color:#111111!important;
+}
+</style>
 </head>
 <body>
 <style type="text/css">
@@ -420,7 +439,7 @@ function init(){
  var id=old.getAttribute('data-product-quantity-id');
  if(!id)return;
  var row=document.createElement('span');row.className='hp-detail-quantity';
- row.innerHTML='<span class="hp-qty-caption"></span><button type="button" class="qminus" aria-label="Decrease quantity">−</button><input type="number" class="qnumber hp-qty-input" style="background-color:#ffffff!important;background:#ffffff!important;color:#101010!important;-webkit-text-fill-color:#101010!important;color-scheme:light!important" min="0" max="99999" step="1" inputmode="numeric" aria-label="Quantity"><button type="button" class="qplus" aria-label="Increase quantity">+</button>';
+ row.innerHTML='<span class="hp-qty-caption"></span><button type="button" class="qminus" aria-label="Decrease quantity">−</button><input type="text" class="qnumber hp-qty-input" style="background-color:#ffffff!important;background:#ffffff!important;color:#101010!important;-webkit-text-fill-color:#101010!important;color-scheme:light!important" min="0" max="99999" step="1" inputmode="numeric" aria-label="Quantity"><button type="button" class="qplus" aria-label="Increase quantity">+</button>';
  var input=row.querySelector('input');var lang='en';try{lang=localStorage.getItem('hpmilk_lang')||'en'}catch(e){};var labels={en:'Add to Cart',tr:'Sepete Ekle',ar:'أضف إلى السلة',fa:'افزودن به سبد کالا'};row.querySelector('.hp-qty-caption').textContent=labels[lang]||labels.en;
  function load(){try{return JSON.parse(localStorage.getItem('hpmilk_order_cart_v1')||'{}')||{}}catch(e){return {}}}
  function get(){var c=load();return c[id]?Number(c[id].qty)||0:0}
