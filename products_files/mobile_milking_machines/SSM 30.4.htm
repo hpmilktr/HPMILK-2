@@ -273,6 +273,24 @@ html body .hp-detail-actions .hp-detail-quantity input.hp-qty-input {
  window.addEventListener('pageshow',apply);
 })();
 </script>
+
+<style id="hp-counter-same-white-as-gallery-final">
+@media (max-width:700px) {
+  html body .hp-detail-actions .hp-detail-quantity input.qnumber {
+    background:#ffffff !important;
+    background-color:#ffffff !important;
+    background-image:linear-gradient(#ffffff,#ffffff) !important;
+    color:#111111 !important;
+    -webkit-text-fill-color:#111111 !important;
+    caret-color:#111111 !important;
+    border:2px solid #cbd5e1 !important;
+    color-scheme:light !important;
+    opacity:1 !important;
+    -webkit-appearance:none !important;
+    appearance:none !important;
+  }
+}
+</style>
 </head>
 <body>
 <style type="text/css">
@@ -483,7 +501,7 @@ function init(){
  var id=old.getAttribute('data-product-quantity-id');
  if(!id)return;
  var row=document.createElement('span');row.className='hp-detail-quantity';
- row.innerHTML='<span class="hp-qty-caption"></span><button type="button" class="qminus" aria-label="Decrease quantity">−</button><input type="text" class="qnumber hp-qty-input" style="background-color:#ffffff!important;background:#ffffff!important;color:#101010!important;-webkit-text-fill-color:#101010!important;color-scheme:light!important" min="0" max="99999" step="1" inputmode="numeric" aria-label="Quantity"><button type="button" class="qplus" aria-label="Increase quantity">+</button>';
+ row.innerHTML='<span class="hp-qty-caption"></span><button type="button" class="qminus" aria-label="Decrease quantity">−</button><input type="text" class="qnumber hp-qty-input" style="background:#fff!important;background-color:#fff!important;background-image:linear-gradient(#fff,#fff)!important;color:#111!important;-webkit-text-fill-color:#111!important;color-scheme:light!important;border:2px solid #cbd5e1!important" min="0" max="99999" step="1" inputmode="numeric" aria-label="Quantity"><button type="button" class="qplus" aria-label="Increase quantity">+</button>';
  var input=row.querySelector('input');var lang='en';try{lang=localStorage.getItem('hpmilk_lang')||'en'}catch(e){};var labels={en:'Add to Cart',tr:'Sepete Ekle',ar:'أضف إلى السلة',fa:'افزودن به سبد کالا'};row.querySelector('.hp-qty-caption').textContent=labels[lang]||labels.en;
  function load(){try{return JSON.parse(localStorage.getItem('hpmilk_order_cart_v1')||'{}')||{}}catch(e){return {}}}
  function get(){var c=load();return c[id]?Number(c[id].qty)||0:0}
@@ -716,6 +734,23 @@ html body input.qnumber {
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',paint);
  else paint();
  window.addEventListener('pageshow',paint);
+})();
+</script>
+
+<script id="hp-counter-white-direct-style">
+(function(){
+ function fix(){
+   document.querySelectorAll('.hp-detail-quantity input.qnumber').forEach(function(el){
+     el.style.setProperty('background-color','#ffffff','important');
+     el.style.setProperty('background-image','linear-gradient(#ffffff,#ffffff)','important');
+     el.style.setProperty('color','#111111','important');
+     el.style.setProperty('-webkit-text-fill-color','#111111','important');
+     el.style.setProperty('color-scheme','light','important');
+     el.style.setProperty('border','2px solid #cbd5e1','important');
+   });
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fix);else fix();
+ window.addEventListener('pageshow',fix);
 })();
 </script>
 </body>
