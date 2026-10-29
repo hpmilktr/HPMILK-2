@@ -1,0 +1,165 @@
+<!doctype html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>سبد خرید HPmilk</title><link rel="stylesheet" href="hp-shop.css">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f5f7;color:#202124;font-family:Tahoma,Arial,sans-serif;padding-bottom:110px}header{background:white;padding:16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ddd}header strong{font-size:20px}header a{color:#1473a9;text-decoration:none}main{max-width:850px;margin:20px auto;padding:0 12px}.item{background:white;border:1px solid #e2e3e5;border-radius:14px;padding:18px;margin-bottom:12px;display:flex;align-items:center;gap:18px;justify-content:space-between}.item .name{font-weight:700;line-height:1.7;overflow-wrap:anywhere}.item small{display:block;color:#777;margin-top:6px}.qty{display:flex;gap:14px;align-items:center;flex-shrink:0}.qty button{border:1px solid #e40046;background:white;color:#e40046;font-size:25px;width:43px;height:43px;border-radius:9px;cursor:pointer}.qty b{min-width:22px;text-align:center}.remove{border:0;background:none;color:#a23c55;cursor:pointer;margin-top:8px}#empty{text-align:center;background:white;border-radius:12px;padding:50px 20px;line-height:2}#empty a{color:#e40046}#summary{position:fixed;bottom:0;left:0;right:0;z-index:999;background:#fff;border-top:1px solid #ddd;padding:12px max(16px,calc((100vw - 850px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px}#summary button{border:0;border-radius:10px;background:#e40046;color:#fff;font-size:17px;font-weight:bold;padding:15px 30px;cursor:pointer}#summary small{display:block;color:#777;margin-top:5px}#checkout{display:none;background:#fff;border:1px solid #ddd;border-radius:14px;padding:20px;margin:20px 0}#checkout.open{display:block}#checkout label{display:block;margin:12px 0;font-size:14px}#checkout input,#checkout textarea{display:block;width:100%;padding:12px;margin-top:5px;border:1px solid #bbb;border-radius:8px;font:16px Tahoma}#checkout textarea{min-height:85px}#checkout .actions{display:flex;flex-wrap:wrap;gap:10px;position:sticky;bottom:105px;z-index:1003;background:#fff;padding:12px 0 8px;margin-top:12px;border-top:1px solid #e6e6e6}#checkout .actions button{min-height:45px;box-shadow:0 2px 5px rgba(0,0,0,.12)}#checkout button{background:#117caa;color:#fff;border:0;padding:13px;border-radius:8px;font-size:15px;cursor:pointer}#checkout #wa{background:#168c58}#checkout #email{background:#117caa}#total{display:inline-flex;align-items:center;justify-content:center;direction:ltr;white-space:nowrap;background:#e40046;color:#fff;border-radius:999px;padding:13px 19px;font-size:15px;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,.13)}
+@media(max-width:760px){body{padding-bottom:160px!important}.item{align-items:flex-start;flex-direction:column;gap:10px}.qty{align-self:flex-start}#summary{bottom:72px;padding:12px 16px}#summary button{padding:14px 20px;font-size:16px}main{margin:10px auto}}
+
+body.hp-cart-page header{display:block!important;background:white!important;padding:16px!important;border-bottom:1px solid #ddd!important}
+body.hp-cart-page .hp-cart-header-row{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;flex-wrap:wrap!important}
+body.hp-cart-page .hp-cart-anchor{display:flex!important;justify-content:flex-start!important;align-items:center!important;margin-top:8px!important;min-height:24px!important;line-height:1!important;background:transparent!important}
+body.hp-cart-page .hp-cart-anchor #hp-language-picker{display:inline-flex!important;position:relative!important;background:transparent!important;border:0!important;box-shadow:none!important;margin:0!important}
+body.hp-cart-page .hp-cart-anchor #hp-language-picker .hp-current-language{background:transparent!important;box-shadow:none!important;border:0!important}
+body.hp-cart-page .hp-cart-anchor #hp-language-picker img.hp-flag{box-shadow:none!important;border:0!important;background:transparent!important}
+@media(max-width:760px){
+  body.hp-cart-page .hp-cart-header-row{align-items:flex-start!important;justify-content:flex-start!important}
+  body.hp-cart-page .hp-cart-anchor{margin-top:10px!important}
+}
+
+
+/* Cart dropdown: open inward, never beyond left browser edge. */
+body.hp-cart-page header{position:relative!important;z-index:10020!important;overflow:visible!important}
+body.hp-cart-page .hp-cart-anchor{position:relative!important;z-index:10021!important;overflow:visible!important}
+body.hp-cart-page .hp-cart-anchor #hp-language-picker{position:relative!important;z-index:10022!important;overflow:visible!important}
+body.hp-cart-page .hp-cart-anchor #hp-language-picker .hp-language-menu,
+body.hp-cart-page .hp-cart-anchor #hp-language-picker .hp-language-menu:not([hidden]){
+ position:absolute!important;left:0!important;right:auto!important;top:calc(100% + 6px)!important;
+ transform:none!important;min-width:84px!important;width:84px!important;max-width:calc(100vw - 26px)!important;
+ padding:3px!important;background:#fff!important;color:#18212b!important;
+ border:1px solid #ccd2d8!important;border-radius:8px!important;
+ box-shadow:0 7px 18px rgba(0,0,0,.13)!important;z-index:10023!important;
+}
+body.hp-cart-page .hp-cart-anchor #hp-language-picker .hp-language-menu[hidden]{display:none!important}
+body.hp-cart-page .hp-cart-anchor #hp-language-picker .hp-language-option{
+ display:flex!important;color:#18212b!important;background:white!important;
+ padding:1px 3px!important;min-height:21px!important;height:21px!important;gap:5px!important;direction:ltr!important;
+ justify-content:flex-start!important;text-align:left!important;border:0!important;
+}
+body.hp-cart-page .hp-cart-anchor #hp-language-picker .hp-language-option:hover,
+body.hp-cart-page .hp-cart-anchor #hp-language-picker .hp-language-option:focus-visible,
+body.hp-cart-page .hp-cart-anchor #hp-language-picker .hp-language-option[aria-current=true]{
+ background:#eaf4fb!important;color:#18212b!important;
+}
+body.hp-cart-page .hp-cart-anchor #hp-language-picker .hp-language-option img.hp-flag{display:block!important;width:28px!important;height:18px!important;flex-shrink:0!important}
+
+
+/* Compact real product thumbnails in cart cards (language-independent). */
+.item .hp-cart-product-info{display:flex;align-items:center;gap:14px;min-width:0;flex:1 1 310px;}
+.item .hp-cart-product-thumb{width:76px;height:76px;min-width:76px;flex:0 0 76px;object-fit:contain;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:5px;box-sizing:border-box;}
+.item .hp-cart-product-thumb-placeholder{display:flex;align-items:center;justify-content:center;color:#687381;font:600 12px Arial,sans-serif;background:#f2f4f7;}
+.item .hp-cart-product-info .name{min-width:0;overflow-wrap:anywhere;}
+@media(max-width:760px){.item .hp-cart-product-info{width:100%;flex:0 1 auto}.item .hp-cart-product-thumb{width:66px;height:66px;min-width:66px;flex-basis:66px}}
+</style></head><body class="hp-cart-page"><header><div class="hp-cart-header-row"><strong data-i18n="🛒 سبد خرید HPmilk">🛒 HPmilk Shopping Cart</strong><a href="products.htm" data-i18n="ادامه انتخاب محصولات ←">← Continue shopping</a></div><div class="hp-language-anchor hp-cart-anchor" aria-label="Language selector"></div></header><main><div id="items"></div><div id="empty" hidden data-i18n="سبد خرید شما خالی است.">Your cart is empty.<br><a href="products.htm" data-i18n="مشاهده محصولات">View products</a></div>
+<section id="checkout"><h2 data-i18n="ثبت سفارش">Place Order</h2><p data-i18n="پس از تکمیل مشخصات، سفارش را از طریق واتساپ یا ایمیل ارسال کنید. قیمت نهایی با فروشنده هماهنگ می‌شود.">Complete your details and send your order via WhatsApp or email. Final pricing will be confirmed by the seller.</p><form id="form"><label data-i18n="نام و نام خانوادگی *">Full name *<input name="customer" required></label><label data-i18n="شماره تماس / واتساپ *">Phone / WhatsApp *<input name="phone" required type="tel"></label><label data-i18n="ایمیل">Email<input name="email" type="email"></label><label data-i18n="شهر / کشور">City / Country<input name="location"></label><label data-i18n="آدرس و توضیحات">Address and notes<textarea name="notes"></textarea></label><div class="actions"><button type="button" id="wa" data-i18n="ارسال سفارش با واتساپ">Send order via WhatsApp</button><button type="button" id="email" data-i18n="ارسال سفارش با ایمیل">Send order via email</button></div></form></section></main>
+<div id="summary"><div><strong id="total" aria-live="polite">🛒 Shopping Cart (0)</strong><small data-i18n="قیمت پس از تأیید فروشنده">Price confirmed by seller</small></div><button id="checkoutButton" data-i18n="ثبت سفارش">Place Order</button></div><script src="hp-shop.js"></script><script>
+(function(){
+var key='hpmilk_order_cart_v1',cart={};
+function load(){try{cart=JSON.parse(localStorage.getItem(key)||'{}')||{}}catch(e){cart={}}}
+function save(){localStorage.setItem(key,JSON.stringify(cart));render();window.dispatchEvent(new Event('hpmilk-cart-changed'))}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function list(){return Object.keys(cart).map(function(k){return cart[k]}).filter(function(x){return x&&Number(x.qty)>0})}
+function lang(){try{return localStorage.getItem('hpmilk_lang')||'en'}catch(e){return 'en'}}
+// Chrome Translate changes visible text, but does not translate JavaScript strings.
+// Detect supported translated languages from the actual form labels at send time.
+function orderLang(){
+ if(['en','tr','ar','fa'].includes(lang()))return lang();
+ // Read the translated text visible to the customer, not the original HTML language.
+ var fields=Array.from(document.querySelectorAll('#form label')).map(function(el){return el.textContent||''}).join(' ');
+ var heading=(document.querySelector('#checkout h2')||{}).textContent||'';
+ var sample=(fields+' '+heading).toLowerCase().replace(/\s+/g,' ');
+ // Arabic and Persian share a script, so script detection alone is insufficient.
+ if(/(?:الاسم|الاسم الكامل|الاسم واللقب|رقم الهاتف|رقم الجوال|البريد الإلكتروني|البريد الالكتروني|المدينة|الدولة|البلد|العنوان|الملاحظات|إرسال الطلب|ارسال الطلب|تأكيد الطلب|إتمام الطلب|إتمام الشراء|اطلب الآن)/.test(sample))return 'ar';
+ if(/(?:نام و نام خانوادگی|نام کامل|شماره تماس|شماره تلفن|شهر \/ کشور|کشور|آدرس و توضیحات|ثبت سفارش|ارسال سفارش|توضیحات)/.test(sample))return 'fa';
+ if(/(?:ad soyad|adınız|telefon|şehir|ülke|sipariş|e.posta|e-posta|notlar|gönder|adres)/i.test(sample))return 'tr';
+ // If the browser translated to an Arabic-script language, do not assume Persian.
+ if(/[\u0600-\u06ff]/.test(sample))return /[پچژگکی]/.test(sample)?'fa':'ar';
+ return 'en';
+}
+
+var hpCartProductImages={"1":"products_files/1.gif","2":"products_files/2.gif","3":"products_files/4.gif","4":"products_files/7.jpg","5":"products_files/3.gif","6":"products_files/5.gif","7":"products_files/6.gif","8":"products_files/8b%23U0131g.jpg","9":"products_files/25.jpg","10":"products_files/Receiver-32L.jpg","11":"products_files/Automatic%20parlours/01.jpg","12":"products_files/Rece%23U0131ver-50L-Westfal%23U0131a.jpg","13":"products_files/m13.jpg","14":"products_files/Automatic%20parlours/L1.jpg","15":"products_files/Automatic%20parlours/L2.jpg","16":"products_files/Automatic%20parlours/L3.jpg","17":"products_files/p14.jpg","18":"products_files/v-p-1500.jpg","19":"products_files/v-p-2200.jpg","20":"products_files/v-p-3300.jpg","21":"products_files/32.jpg","22":"products_files/30.bmp","23":"products_files/31.bmp"};
+document.addEventListener('error',function(ev){
+ var img=ev.target;
+ if(!(img instanceof HTMLImageElement)||!img.matches('img[data-thumb-product]'))return;
+ var placeholder=document.createElement('span');
+ placeholder.className='hp-cart-product-thumb hp-cart-product-thumb-placeholder';
+ placeholder.setAttribute('aria-hidden','true');
+ placeholder.textContent='#'+img.dataset.thumbProduct;
+ img.replaceWith(placeholder);
+},true);
+function productThumb(id){
+ var n=String(id);
+ var url=hpCartProductImages[n];
+ if(!url) return '<span class="hp-cart-product-thumb hp-cart-product-thumb-placeholder" aria-hidden="true">#'+esc(n)+'</span>';
+ return '<img class="hp-cart-product-thumb" src="'+url+'" alt="" loading="lazy" data-thumb-product="'+esc(n)+'">';
+}
+
+function render(){
+ var fa=lang()==='fa',tr=lang()==='tr',ar=lang()==='ar',all=list(),n=all.reduce(function(a,x){return a+Number(x.qty)},0);
+ document.getElementById('items').innerHTML=all.map(function(x){
+ var name=fa?('محصول شماره '+x.id):tr?('Ürün No. '+x.id):ar?('المنتج رقم '+x.id):('Product No. '+x.id);
+ return '<article class="item"><div class="hp-cart-product-info">'+productThumb(x.id)+'<div class="name">'+esc(name)+'<small>'+(fa?'شماره محصول: ':tr?'Ürün No.: ':ar?'رقم المنتج: ':'Product No.: ')+esc(x.id)+(fa?' · قیمت توافقی':tr?' · Fiyat sorunuz':ar?' · السعر عند الطلب':' · Price on request')+'</small></div></div><div class="qty"><button data-id="'+esc(x.id)+'" data-op="plus" aria-label="'+(fa?'افزایش تعداد':tr?'Adedi artır':ar?'زيادة الكمية':'Increase quantity')+'">+</button><b>'+Number(x.qty)+'</b><button data-id="'+esc(x.id)+'" data-op="minus" aria-label="'+(fa?'کاهش تعداد':tr?'Adedi azalt':ar?'تقليل الكمية':'Decrease quantity')+'">−</button></div><button class="remove" data-id="'+esc(x.id)+'" data-op="remove">'+(fa?'حذف از سبد':tr?'Sepetten kaldır':ar?'إزالة من السلة':'Remove from cart')+'</button></article>'
+ }).join('');
+ document.getElementById('empty').hidden=!!n;
+ document.getElementById('total').textContent=fa?('🛒 سبد خرید ('+n+')'):tr?('🛒 Alışveriş Sepeti ('+n+')'):ar?('🛒 سلة التسوق ('+n+')'):('🛒 Shopping Cart ('+n+')');
+ document.getElementById('checkoutButton').disabled=!n;
+ document.getElementById('checkoutButton').style.opacity=n?'1':'.5';
+}
+var translations={
+ '🛒 سبد خرید HPmilk':'🛒 HPmilk Shopping Cart','ادامه انتخاب محصولات ←':'← Continue shopping','سبد خرید شما خالی است.':'Your cart is empty.','مشاهده محصولات':'View products','ثبت سفارش':'Place Order','پس از تکمیل مشخصات، سفارش را از طریق واتساپ یا ایمیل ارسال کنید. قیمت نهایی با فروشنده هماهنگ می‌شود.':'Complete your details and send your order via WhatsApp or email. Final pricing will be confirmed by the seller.','نام و نام خانوادگی *':'Full name *','شماره تماس / واتساپ *':'Phone / WhatsApp *','ایمیل':'Email','شهر / کشور':'City / Country','آدرس و توضیحات':'Address and notes','ارسال سفارش با واتساپ':'Send order via WhatsApp','ارسال سفارش با ایمیل':'Send order via email','قیمت پس از تأیید فروشنده':'Price confirmed by seller','۰ کالا':'0 items'
+};
+function applyLanguage(){
+ var language=lang(), rtl=language==='fa'||language==='ar'; document.documentElement.lang=language;document.documentElement.dir=rtl?'rtl':'ltr';
+ document.title=language==='fa'?'سبد خرید HPmilk':language==='tr'?'HPmilk Alışveriş Sepeti':language==='ar'?'سلة تسوق HPmilk':'HPmilk Shopping Cart';
+ const trn={
+ '🛒 سبد خرید HPmilk':['🛒 HPmilk Shopping Cart','🛒 HPmilk Alışveriş Sepeti','🛒 سلة تسوق HPmilk','🛒 سبد خرید HPmilk'],
+ 'ادامه انتخاب محصولات ←':['← Continue shopping','← Alışverişe devam et','← متابعة التسوق','← ادامه خرید'],
+ 'سبد خرید شما خالی است.':['Your cart is empty.','Sepetiniz boş.','سلة التسوق فارغة.','سبد خرید شما خالی است.'],
+ 'مشاهده محصولات':['View products','Ürünleri Gör','عرض المنتجات','مشاهده محصولات'],
+ 'ثبت سفارش':['Place Order','Sipariş Ver','إرسال الطلب','ثبت سفارش'],
+ 'پس از تکمیل مشخصات، سفارش را از طریق واتساپ یا ایمیل ارسال کنید. قیمت نهایی با فروشنده هماهنگ می‌شود.':['Complete your details and send your order via WhatsApp or email. Final pricing will be confirmed by the seller.','Bilgilerinizi girerek siparişinizi WhatsApp veya e-posta ile gönderin. Son fiyat satıcı tarafından onaylanacaktır.','أكمل بياناتك وأرسل طلبك عبر واتساب أو البريد الإلكتروني. سيتم تأكيد السعر النهائي من البائع.','اطلاعات خود را تکمیل کرده و سفارش را از طریق واتساپ یا ایمیل ارسال کنید. قیمت نهایی با فروشنده هماهنگ می‌شود.'],
+ 'نام و نام خانوادگی *':['Full name *','Ad Soyad *','الاسم الكامل *','نام و نام خانوادگی *'],
+ 'شماره تماس / واتساپ *':['Phone / WhatsApp *','Telefon / WhatsApp *','الهاتف / واتساب *','شماره تماس / واتساپ *'],
+ 'ایمیل':['Email','E-posta','البريد الإلكتروني','ایمیل'],
+ 'شهر / کشور':['City / Country','Şehir / Ülke','المدينة / الدولة','شهر / کشور'],
+ 'آدرس و توضیحات':['Address and notes','Adres ve notlar','العنوان والملاحظات','آدرس و توضیحات'],
+ 'ارسال سفارش با واتساپ':['Send order via WhatsApp','Siparişi WhatsApp ile Gönder','إرسال الطلب عبر واتساب','ارسال سفارش با واتساپ'],
+ 'ارسال سفارش با ایمیل':['Send order via email','Siparişi E-posta ile Gönder','إرسال الطلب عبر البريد الإلكتروني','ارسال سفارش با ایمیل'],
+ 'قیمت پس از تأیید فروشنده':['Price confirmed by seller','Fiyat satıcı tarafından onaylanır','يؤكد البائع السعر','قیمت پس از تأیید فروشنده']};
+ const idx={en:0,tr:1,ar:2,fa:3}[language]||0;
+ document.querySelectorAll('[data-i18n]').forEach(function(el){const v=trn[el.dataset.i18n];if(!v)return;const node=Array.from(el.childNodes).find(n=>n.nodeType===3&&n.textContent.trim());if(node)node.textContent=v[idx]});render();
+}
+
+
+document.getElementById('items').onclick=function(e){var b=e.target.closest('[data-op]');if(!b)return;var id=b.dataset.id,op=b.dataset.op;if(!cart[id])return;if(op==='plus')cart[id].qty++;else if(op==='minus')cart[id].qty--;else cart[id].qty=0;if(cart[id].qty<=0)delete cart[id];save()};
+document.getElementById('checkoutButton').onclick=function(){if(!list().length)return;document.getElementById('checkout').classList.add('open');document.getElementById('checkout').scrollIntoView({behavior:'smooth',block:'start'})};
+function message(channel){
+ var f=document.getElementById('form');
+ if(!f.reportValidity())return null;
+ var data=new FormData(f),language=orderLang(),fa=language==='fa',tr=language==='tr',ar=language==='ar';
+ function digits(value){
+  var ascii=String(value).replace(/[۰-۹]/g,function(c){return String(c.charCodeAt(0)-1776)}).replace(/[٠-٩]/g,function(c){return String(c.charCodeAt(0)-1632)});
+  return fa?ascii.replace(/[0-9]/g,function(c){return '۰۱۲۳۴۵۶۷۸۹'[Number(c)]}):ascii;
+ }
+ var words=ar?{product:'المنتج رقم ',quantity:'الكمية: ',total:'إجمالي عدد المنتجات: ',name:'الاسم: ',phone:'الهاتف: ',email:'البريد الإلكتروني: ',city:'المدينة / الدولة: ',notes:'العنوان والملاحظات: ',heading:'HPmilk - طلب جديد',closing:'يرجى تأكيد السعر وتكلفة الشحن.'}:
+ fa?{product:'محصول شماره ',quantity:'تعداد: ',total:'جمع کل تعداد کالاها: ',name:'نام: ',phone:'تلفن: ',email:'ایمیل: ',city:'شهر / کشور: ',notes:'آدرس و توضیحات: ',heading:'HPmilk - سفارش جدید',closing:'لطفاً قیمت و هزینه ارسال را اعلام کنید.'}:
+ tr?{product:'Ürün No. ',quantity:'Adet: ',total:'Toplam ürün adedi: ',name:'Ad Soyad: ',phone:'Telefon: ',email:'E-posta: ',city:'Şehir / Ülke: ',notes:'Adres ve notlar: ',heading:'HPmilk - Yeni Sipariş',closing:'Lütfen fiyatı ve kargo ücretini bildiriniz.'}:
+ {product:'Product No. ',quantity:'Quantity: ',total:'Total Quantities: ',name:'Name: ',phone:'Phone: ',email:'Email: ',city:'City / Country: ',notes:'Address and notes: ',heading:'HPmilk - New Order',closing:'Please confirm the price and shipping cost.'};
+ var products=list().map(function(x){
+  var label=words.product+digits(x.id),name=fa?(x.name||label):label;
+  return name+' | '+words.quantity+digits(x.qty);
+ }).join('\n');
+ var totalQty=list().reduce(function(sum,x){return sum+Number(x.qty||0)},0);
+ // Emphasize the real sum of quantities, not the number of different products.
+ // WhatsApp supports *bold* plain-text formatting; mailto supports plain text only.
+ var totalText=words.total+digits(totalQty);
+ var totalBlock=channel==='whatsapp'
+   ? '🔴━━━━━━━━━━━━━━━━━━🔴\n*🛒 '+totalText+'*\n🔴━━━━━━━━━━━━━━━━━━🔴'
+   : '🟥━━━━━━━━━━━━━━━━━━🟥\n🛒  '+totalText+'\n🟥━━━━━━━━━━━━━━━━━━🟥';
+ return words.heading+'\n\n'+products+'\n\n'+totalBlock+'\n\n'+
+  words.name+(data.get('customer')||'')+'\n'+words.phone+(data.get('phone')||'')+'\n'+
+  words.email+(data.get('email')||'')+'\n'+words.city+(data.get('location')||'')+'\n'+
+  words.notes+(data.get('notes')||'')+'\n\n'+words.closing;
+}
+document.getElementById('wa').onclick=function(){var m=message('whatsapp');if(m)window.open('https://wa.me/905316216031?text='+encodeURIComponent(m),'_blank','noopener')};
+document.getElementById('email').onclick=function(){var m=message('email');if(m)location.href='mailto:hpmilk.tr@gmail.com?subject='+encodeURIComponent(orderLang()==='ar'?'HPmilk - طلب جديد':orderLang()==='fa'?'HPmilk - سفارش جدید':orderLang()==='tr'?'HPmilk - Yeni Sipariş':'HPmilk product order')+'&body='+encodeURIComponent(m)};
+window.addEventListener('storage',function(){load();render()});window.addEventListener('pageshow',function(){load();render()});window.addEventListener('focus',function(){load();render()});load();applyLanguage();
+})();
+</script><link rel="stylesheet" href="hp-language.css"><script defer src="hp-language.js"></script></body></html>

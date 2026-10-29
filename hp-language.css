@@ -1,0 +1,71 @@
+/* HPmilk language picker - clean final placement */
+#hp-language-picker{font-family:Arial,Helvetica,sans-serif!important;direction:ltr!important;line-height:1!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;position:relative!important;z-index:2147483646!important;background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;margin:0!important;width:auto!important;height:auto!important}
+#hp-language-picker button{box-sizing:border-box!important;cursor:pointer!important;font-family:Arial,Helvetica,sans-serif!important}
+#hp-language-picker .hp-current-language{display:flex!important;align-items:center!important;justify-content:center!important;width:28px!important;height:18px!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+#hp-language-picker .hp-current-language:hover,#hp-language-picker .hp-current-language:focus-visible{background:transparent!important;box-shadow:none!important;outline:1px solid rgba(255,255,255,.45)!important;outline-offset:2px!important}
+#hp-language-picker img.hp-flag{display:block!important;width:28px!important;height:18px!important;min-width:28px!important;max-width:28px!important;object-fit:cover!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important}
+#hp-language-picker .hp-language-menu{position:absolute!important;top:calc(100% + 6px)!important;right:0!important;left:auto!important;min-width:80px!important;background:#243040!important;padding:4px!important;border:1px solid #374457!important;border-radius:6px!important;box-shadow:0 8px 22px rgba(0,0,0,.35)!important;overflow:visible!important}
+#hp-language-picker .hp-language-menu{display:grid!important;grid-template-columns:1fr!important;gap:4px!important}
+#hp-language-picker .hp-language-menu[hidden]{display:none!important}
+#hp-language-picker .hp-language-option{display:flex!important;align-items:center!important;justify-content:flex-start!important;width:100%!important;min-width:70px!important;min-height:24px!important;padding:3px 5px!important;gap:6px!important;text-align:left!important;color:#fff!important;background:transparent!important;border:0!important;border-radius:4px!important;font-size:12px!important;font-weight:700!important;letter-spacing:.3px!important;box-shadow:none!important;white-space:nowrap!important}
+#hp-language-picker .hp-language-option:hover,#hp-language-picker .hp-language-option:focus-visible{background:#40516a!important}
+#hp-language-picker .hp-language-option[aria-current=true]{background:#36475b!important}
+#hp-language-picker .hp-language-option span{direction:auto!important}
+#hp-language-picker .hp-language-option img.hp-flag{display:block!important;width:28px!important;height:18px!important;min-width:28px!important;max-width:28px!important;flex-shrink:0!important}
+#hp-language-picker .hp-language-option .hp-lang-code{font-size:12px!important;line-height:18px!important;font-weight:700!important;direction:ltr!important}
+html[dir="rtl"] .hp-top-region,html[dir="rtl"] .hp-top-region table,html[dir="rtl"] .hp-main-region table{direction:ltr}
+html[dir="rtl"] .hp-main-region p,html[dir="rtl"] .hp-main-region .TEX{direction:rtl;text-align:right}
+html[dir="rtl"] #hp-desktop-cart,html[dir="rtl"] #hp-mobile-nav{direction:ltr}
+html[dir="rtl"] #hp-language-picker{direction:ltr}
+.hp-top-region a[href]{position:relative;display:inline-block;vertical-align:top;}
+.hp-top-region .hp-nav-visible-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:700 11px Arial,sans-serif;color:#15749d;background:linear-gradient(#fffefc,#e7e7e7);border:1px solid #a9a9a9;text-align:center;pointer-events:none;}
+.hp-translated-block{line-height:1.6;font-size:14px;max-width:100%;}
+.hp-translated-block p{margin:0 0 12px;}
+.hp-main-region [data-hp-product-line]{line-height:1.5;}
+.hp-top-region,.hp-top-region table,.hp-main-region>table{direction:ltr!important}
+.hp-language-anchor{display:block!important;overflow:visible!important;line-height:1!important}
+.hp-language-anchor.hp-center-anchor{text-align:center!important;margin:6px auto 0!important}
+.hp-language-anchor.hp-legacy-logo-anchor{width:257px!important;max-width:257px!important;text-align:right!important;margin:3px 0 0 auto!important;padding-right:10px!important;box-sizing:border-box!important}
+.hp-language-anchor.hp-modern-logo-anchor{text-align:center!important;margin:8px auto 0!important}
+.hp-language-anchor.hp-iframe-anchor{width:257px!important;max-width:257px!important;text-align:right!important;margin:3px 0 0 auto!important;padding-right:10px!important;box-sizing:border-box!important}
+header .hp-language-anchor{display:flex!important;justify-content:center!important}
+body.hp-products-with-frame #hp-language-picker{position:static!important}
+@media(max-width:700px){#hp-language-picker .hp-language-menu{right:50%!important;left:auto!important;transform:translateX(50%)!important}.hp-language-anchor.hp-legacy-logo-anchor,.hp-language-anchor.hp-iframe-anchor{width:100%!important;max-width:100%!important;text-align:center!important;padding-right:0!important;margin:5px auto 0!important}}
+
+.lang-switcher{display:none!important}
+
+/* Reliable image button labels in top.htm iframe */
+body > table a[href]{position:relative!important;display:inline-block!important;vertical-align:top!important}
+body > table a[href] .hp-nav-visible-label{position:absolute!important;inset:0!important;display:flex!important;align-items:center!important;justify-content:center!important;background:linear-gradient(#fff,#e9e9e9)!important;color:#15749d!important;border:1px solid #a9a9a9!important;font:bold 11px Arial,sans-serif!important;text-align:center!important;pointer-events:none!important;white-space:nowrap!important}
+/* Flag on the full-screen entry page must be inside the intro overlay */
+#hpmilkIntro #hp-language-picker.hp-intro-picker{display:flex!important;margin:14px auto 0!important;position:relative!important;z-index:10!important;justify-content:center!important}
+#hpmilkIntro #hp-language-picker .hp-language-menu{right:50%!important;transform:translateX(50%)!important;text-shadow:none!important}
+/* Avoid cutting off menu buttons after adding flag below logo */
+.hp-top-region{height:174px!important;min-height:174px!important;overflow:visible!important}
+.hp-top-region>table{height:174px!important}
+@media(max-width:700px){.hp-top-region{height:auto!important;min-height:172px!important;overflow:visible!important}.hp-top-region>table{height:auto!important}}
+
+/* Compact visible four-language dropdown in the legacy embedded header. */
+#hp-language-picker .hp-language-menu{
+ top:calc(100% + 3px)!important;
+ right:0!important;left:auto!important;
+ width:82px!important;min-width:82px!important;max-width:82px!important;
+ padding:3px!important;gap:1px!important;
+ border:1px solid #c5d4df!important;border-radius:5px!important;
+ background:#fff!important;color:#182530!important;
+ box-shadow:0 3px 8px rgba(0,0,0,.12)!important;
+ display:grid!important;grid-template-columns:1fr!important;
+ overflow:visible!important;
+}
+#hp-language-picker .hp-language-menu[hidden]{display:none!important}
+#hp-language-picker .hp-language-option{
+ width:100%!important;min-width:0!important;
+ height:21px!important;min-height:21px!important;max-height:21px!important;
+ padding:1px 3px!important;margin:0!important;gap:5px!important;
+ display:flex!important;align-items:center!important;justify-content:flex-start!important;
+ font:700 11px Arial,sans-serif!important;line-height:18px!important;
+ color:#15222e!important;background:#fff!important;border:0!important;border-radius:2px!important;
+}
+#hp-language-picker .hp-language-option:hover,#hp-language-picker .hp-language-option:focus-visible,#hp-language-picker .hp-language-option[aria-current=true]{background:#e3f1ff!important;color:#15222e!important}
+#hp-language-picker .hp-language-option img.hp-flag{display:block!important;width:28px!important;height:18px!important;min-width:28px!important;max-width:28px!important;flex:none!important}
+#hp-language-picker .hp-language-option .hp-lang-code{font-size:11px!important;line-height:18px!important;color:inherit!important}
