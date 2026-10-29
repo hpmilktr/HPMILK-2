@@ -76,6 +76,10 @@ html,body{background:#111416!important;color:#f4f5f6!important;}
 .hp-contact-form-buttons{display:flex;justify-content:space-between;gap:15px;}
 .hp-contact-form-buttons input{padding:8px 18px;border-radius:6px;border:0;cursor:pointer;}
 .hp-bottom-region{height:auto!important;min-height:0!important;}
+body[data-hp-page="contact"]{min-height:100vh;display:flex;flex-direction:column;background:#111416!important;color:#f4f5f6!important;}
+body[data-hp-page="contact"] .hp-top-region,body[data-hp-page="contact"] .hp-main-region,body[data-hp-page="contact"] .hp-bottom-region{width:100%;}
+body[data-hp-page="contact"] .hp-main-region.hp-contact-compact{flex:1 0 auto;}
+body[data-hp-page="contact"] .hp-bottom-region{margin-top:auto!important;}
 @media(max-width:700px){
  .hp-main-region.hp-contact-compact{padding:12px 16px 12px!important;min-height:0!important;}
  .hp-contact-info{font-size:14px!important;line-height:1.36!important;}
@@ -90,19 +94,19 @@ html,body{background:#111416!important;color:#f4f5f6!important;}
 <style id="hp-compact-contact-icon-size-v2">
 /* Compact shortcuts from the provided phone/mail/WhatsApp icons */
 .hp-contact-shortcuts{max-width:310px!important;justify-content:space-between!important;gap:18px!important;margin:14px auto 14px!important;padding:0 6px!important;}
-.hp-contact-shortcuts a{width:68px!important;height:68px!important;flex:0 0 68px!important;min-width:0!important;max-width:68px!important;max-height:68px!important;}
-.hp-contact-shortcuts img{width:68px!important;height:68px!important;max-width:68px!important;max-height:68px!important;}
+.hp-contact-shortcuts a{width:56px!important;height:56px!important;flex:0 0 56px!important;min-width:0!important;max-width:56px!important;max-height:56px!important;}
+.hp-contact-shortcuts img{width:56px!important;height:56px!important;max-width:56px!important;max-height:56px!important;}
 @media(max-width:700px){
  .hp-contact-shortcuts{gap:12px!important;max-width:260px!important;margin:10px auto 12px!important;}
- .hp-contact-shortcuts a{width:62px!important;height:62px!important;flex:0 0 62px!important;max-width:62px!important;max-height:62px!important;}
- .hp-contact-shortcuts img{width:62px!important;height:62px!important;max-width:62px!important;max-height:62px!important;}
+ .hp-contact-shortcuts a{width:52px!important;height:52px!important;flex:0 0 52px!important;max-width:52px!important;max-height:52px!important;}
+ .hp-contact-shortcuts img{width:52px!important;height:52px!important;max-width:52px!important;max-height:52px!important;}
 }
 </style>
 <script id="hp-contact-form-label-i18n">
 (function(){function setLabel(){var el=document.getElementById('hp-contact-form-label');if(!el)return;var l='en';try{l=localStorage.getItem('hpmilk_lang')||'en'}catch(e){}el.textContent=({en:'Send a message',tr:'Mesaj gönder',ar:'إرسال رسالة',fa:'ارسال پیام'})[l]||'Send a message';}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setLabel);else setLabel();})();
 </script>
-</head><body>
+</head><body data-hp-page="contact">
 <div class="hp-top-region">
 <table align="center" background="CONTACTS_files/top_files/top_backgrnd.gif" border="0" cellpadding="0" cellspacing="0" valign="TOP" width="100%">
 <tbody>

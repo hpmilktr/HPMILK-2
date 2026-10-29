@@ -44,3 +44,14 @@
  .hp-quick-trigger{width:46px!important;height:46px!important;}
  .hp-quick-choices a,.hp-quick-choices img{width:39px!important;height:39px!important;}
 }
+
+
+/* Inline support button on the home/about page, placed below the text block */
+.hp-inline-contact{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;margin:18px auto 6px;width:100%;}
+.hp-inline-contact .hp-quick-choices{flex-direction:row;gap:10px;align-items:center;justify-content:center;}
+.hp-inline-contact .hp-quick-trigger{position:static!important;margin:0 auto;}
+.hp-inline-contact .hp-quick-choices a,.hp-inline-contact .hp-quick-choices img{width:40px!important;height:40px!important;}
+@media(max-width:700px){
+ .hp-inline-contact{margin:16px auto 4px!important;}
+ .hp-inline-contact .hp-quick-choices a,.hp-inline-contact .hp-quick-choices img{width:38px!important;height:38px!important;}
+}

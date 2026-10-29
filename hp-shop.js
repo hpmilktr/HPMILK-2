@@ -37,27 +37,46 @@ setInterval(update,2500);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 
-// HPmilk floating quick-contact button: never covers the fixed bottom navigation or quantity bar.
+// HPmilk quick-contact control: hidden on entry page, inline on home page, floating elsewhere.
 function addQuickContact(){
- if(document.querySelector('.hp-quick-contact'))return;
+ if(document.querySelector('.hp-quick-contact,.hp-inline-contact'))return;
  var path=location.pathname.toLowerCase();
- if(/(?:^|\/)(?:contacts\.htm|index\.htm|index\.html)$/.test(path))return;
- var el=document.createElement('div');el.className='hp-quick-contact';
- if(/mobile_milking_machines/i.test(path))el.classList.add('hp-quick-on-detail');
- var trigger=document.createElement('button');trigger.type='button';trigger.className='hp-quick-trigger';
- trigger.setAttribute('aria-label','Contact options');trigger.setAttribute('aria-expanded','false');
- trigger.innerHTML='<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M10 26v-3c0-9 6-15 14-15s14 6 14 15v3"/><rect x="7" y="23" width="8" height="14" rx="4"/><rect x="33" y="23" width="8" height="14" rx="4"/><path d="M38 35c0 5-5 8-12 8h-3"/><rect x="19" y="40" width="8" height="5" rx="2.5"/></svg>';
- var choices=document.createElement('div');choices.className='hp-quick-choices';choices.hidden=true;
- [['phone.svg','tel:+905316216031','Phone'],['email.svg','mailto:hpmilk.tr@gmail.com','Email'],['whatsapp.svg','https://wa.me/905316216031','WhatsApp']].forEach(function(d){
-  var a=document.createElement('a');a.href=d[1];a.setAttribute('aria-label',d[2]);a.title=d[2];
-  if(d[2]==='WhatsApp'){a.target='_blank';a.rel='noopener noreferrer'}
-  var im=document.createElement('img');im.src=prefix+'hp-contact-icons/'+d[0];im.alt=d[2];a.appendChild(im);choices.appendChild(a);
- });
+ var page=(document.body&&document.body.getAttribute('data-hp-page'))||'';
+ function makeChoices(){
+  var choices=document.createElement('div');choices.className='hp-quick-choices';choices.hidden=true;
+  [['phone.svg','tel:+905316216031','Phone'],['email.svg','mailto:hpmilk.tr@gmail.com','Email'],['whatsapp.svg','https://wa.me/905316216031','WhatsApp']].forEach(function(d){
+   var a=document.createElement('a');a.href=d[1];a.setAttribute('aria-label',d[2]);a.title=d[2];
+   if(d[2]==='WhatsApp'){a.target='_blank';a.rel='noopener noreferrer'}
+   var im=document.createElement('img');im.src=prefix+'hp-contact-icons/'+d[0];im.alt=d[2];a.appendChild(im);choices.appendChild(a);
+  });
+  return choices;
+ }
+ function makeTrigger(){
+  var trigger=document.createElement('button');trigger.type='button';trigger.className='hp-quick-trigger';
+  trigger.setAttribute('aria-label','Contact options');trigger.setAttribute('aria-expanded','false');
+  trigger.innerHTML='<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M10 26v-3c0-9 6-15 14-15s14 6 14 15v3"/><rect x="7" y="23" width="8" height="14" rx="4"/><rect x="33" y="23" width="8" height="14" rx="4"/><path d="M38 35c0 5-5 8-12 8h-3"/><rect x="19" y="40" width="8" height="5" rx="2.5"/></svg>';
+  return trigger;
+ }
+ if(page==='entry')return;
+ if(page==='contact' || /(?:^|\/)(?:contacts\.htm)$/i.test(path))return;
+ var host=document.createElement('div');
+ var choices=makeChoices();
+ var trigger=makeTrigger();
  function close(){choices.hidden=true;trigger.setAttribute('aria-expanded','false')}
  trigger.addEventListener('click',function(){var opening=choices.hidden;choices.hidden=!opening;trigger.setAttribute('aria-expanded',opening?'true':'false')});
- document.addEventListener('click',function(e){if(!el.contains(e.target))close()});
+ document.addEventListener('click',function(e){if(!host.contains(e.target))close()});
  document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
- el.appendChild(choices);el.appendChild(trigger);document.body.appendChild(el);
+ if(page==='home'){
+  host.className='hp-inline-contact';
+  var anchor=document.getElementById('hp-home-support-anchor')||document.querySelector('.hp-home-support-anchor')||document.querySelector('#hp-intro-block');
+  if(!anchor)return;
+  host.appendChild(choices);host.appendChild(trigger);
+  anchor.appendChild(host);
+  return;
+ }
+ host.className='hp-quick-contact';
+ if(/mobile_milking_machines/i.test(path))host.classList.add('hp-quick-on-detail');
+ host.appendChild(choices);host.appendChild(trigger);document.body.appendChild(host);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',addQuickContact);
 else addQuickContact();
