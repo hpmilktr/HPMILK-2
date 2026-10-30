@@ -196,6 +196,63 @@ html,body{margin:0;padding:0;width:100%;background:#111416;color:#f4f5f6;}
 }
 </style>
 
+<style>
+@media (max-width: 700px) {
+  /* عکس پایینی و هدست کنار هم */
+  .hp-main-region p.hp-mobile-image-support {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 18px !important;
+    margin: 8px auto !important;
+  }
+
+  .hp-mobile-image-support > img {
+    max-width: calc(100% - 90px) !important;
+    max-height: 145px !important;
+    margin: 0 !important;
+  }
+
+  .hp-mobile-image-support #hp-home-support-anchor {
+    position: static !important;
+    flex: 0 0 60px !important;
+    width: 60px !important;
+    margin: 0 !important;
+  }
+
+  .hp-mobile-image-support .hp-inline-contact {
+    margin: 0 !important;
+  }
+
+  .hp-main-region img[src*="index_32.jpg"] {
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.innerWidth > 700) return;
+
+  var picture = document.querySelector(
+    '.hp-main-region img[src*="image002.gif"]'
+  );
+  var headset = document.getElementById(
+    'hp-home-support-anchor'
+  );
+
+  if (!picture || !headset) return;
+
+  var row = picture.closest('p');
+  if (!row) return;
+
+  row.classList.add('hp-mobile-image-support');
+  row.appendChild(headset);
+});
+</script>
+
 </head><body data-hp-page="home">
 <div class="hp-top-region">
 <table align="center" background="welcome_files/top_files/top_backgrnd.gif" border="0" cellpadding="0" cellspacing="0" valign="TOP" width="100%">
