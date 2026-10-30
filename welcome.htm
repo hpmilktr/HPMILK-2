@@ -253,6 +253,54 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<style>
+@media (max-width: 700px) {
+  .hp-mobile-image-support .hp-inline-contact {
+    position: relative !important;
+  }
+
+  .hp-mobile-image-support .hp-quick-choices {
+    position: absolute !important;
+    right: 100% !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    flex-direction: row !important;
+    width: max-content !important;
+    gap: 5px !important;
+    z-index: 10 !important;
+  }
+
+  .hp-mobile-image-support .hp-quick-choices a,
+  .hp-mobile-image-support .hp-quick-choices img {
+    width: 34px !important;
+    height: 34px !important;
+  }
+}
+</style>
+
+<style>
+/* Clean bottom bar - mobile only */
+@media (max-width: 700px) {
+  .hp-bottom-region {
+    background: #10143D !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .hp-bottom-region table {
+    background: #10143D !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .hp-bottom-region td {
+    background: transparent !important;
+    border: none !important;
+  }
+}
+</style>
+
 </head><body data-hp-page="home">
 <div class="hp-top-region">
 <table align="center" background="welcome_files/top_files/top_backgrnd.gif" border="0" cellpadding="0" cellspacing="0" valign="TOP" width="100%">
