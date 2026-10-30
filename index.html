@@ -388,4 +388,11 @@ applyProductPricing();updateProductCount();updateCartCount();initCustomProducts(
   document.addEventListener('click',e=>{const b=e.target.closest('nav button[data-page]');if(!b)return;document.body.classList.toggle('home-mode',b.dataset.page==='home');});
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',startWelcome); else startWelcome();
 })();
-</script><link rel="stylesheet" href="hp-shop.css"><script defer src="hp-shop.js"></script><link rel="stylesheet" href="hp-language.css"><script defer src="hp-language.js"></script></body></html>
+</script>
+
+<style>
+.hp-quick-contact {
+    display: none !important;
+}
+</style>
+<link rel="stylesheet" href="hp-shop.css"><script defer src="hp-shop.js"></script><link rel="stylesheet" href="hp-language.css"><script defer src="hp-language.js"></script></body></html>

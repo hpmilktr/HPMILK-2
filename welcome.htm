@@ -39,6 +39,105 @@ html,body{margin:0;padding:0;width:100%;background:#111416;color:#f4f5f6;}
 
 </style>
 <style id="hp-no-cart-on-this-page">#hp-desktop-cart,#hp-mobile-nav,.hp-cart-launch,.hp-cart-shade,.hp-cart-float,.hp-cart-button{display:none!important}</style>
+
+<style>
+@media (min-width: 1100px) {
+  .hp-main-region {
+    position: relative !important;
+  }
+
+  #hp-home-support-anchor {
+    position: absolute !important;
+    right: 5% !important;
+    top: 60px !important;
+    width: auto !important;
+  }
+
+  #hp-home-support-anchor .hp-inline-contact {
+    width: auto !important;
+    margin: 0 !important;
+  }
+}
+</style>
+
+<style>
+@media (min-width: 900px) {
+
+  body[data-hp-page="home"] {
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-x: hidden !important;
+  }
+
+  .hp-top-region {
+    height: 145px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .hp-main-region {
+    min-height: 0 !important;
+    flex: 1 1 auto !important;
+    padding: 5px 10px !important;
+    overflow: visible !important;
+  }
+
+  .hp-main-region p {
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
+    line-height: 1.3 !important;
+  }
+
+  .hp-main-region img:not([src*="spacer"]) {
+    max-height: 145px !important;
+    width: auto !important;
+    object-fit: contain !important;
+  }
+
+  #hp-intro-block {
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+  }
+
+  .hp-bottom-region {
+    height: 55px !important;
+    flex-shrink: 0 !important;
+  }
+}
+</style>
+
+
+<style>
+/* Email link in the bottom bar of Welcome */
+.hp-bottom-region a.ema {
+    display: inline-block !important;
+    color: #ffd700 !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    margin-right: 35px !important;
+    transform: translateY(-7px) !important;
+}
+
+.hp-bottom-region a.ema:hover {
+    color: #7de3ff !important;
+    }
+
+/* Bottom left company title */
+.hp-bottom-region td.ADD[width="100%"] {
+    padding-left: 30px !important;
+}
+
+.hp-bottom-region td.ADD[width="100%"] font {
+    display: inline-block !important;
+    color: #FFD700 !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    transform: translateY(-5px) !important;
+}
+
+</style>
+
 </head><body data-hp-page="home">
 <div class="hp-top-region">
 <table align="center" background="welcome_files/top_files/top_backgrnd.gif" border="0" cellpadding="0" cellspacing="0" valign="TOP" width="100%">
@@ -88,7 +187,7 @@ html,body{margin:0;padding:0;width:100%;background:#111416;color:#f4f5f6;}
 <td class="ADD" valign="top" width="100%"><img alt="" border="0" height="17" src="welcome_files/bottom_files/spacer.gif" width="1"/><br/>
 <font color="#ffffff" face="Verdana" size="1">MILKING MACHINES &amp; SPARE PARTS</font></td>
 <td align="right" class="ADD" nowrap="" valign="top"><img alt="" border="0" height="17" src="welcome_files/bottom_files/spacer.gif" width="1"/><br/>
-<a href="mailto:hpmilk.tr@gmail.com">Email:</a>
+
 <a class="ema" href="mailto:hpmilk.tr@gmail.com">hpmilk.tr@gmail.com</a><br/><img alt="" border="0" height="15" src="welcome_files/bottom_files/spacer.gif" width="1"/><br/></td>
 <td><img alt="" border="0" height="1" src="welcome_files/bottom_files/spacer.gif" width="3"/></td></tr></tbody></table></div>
 <link href="hp-shop.css" rel="stylesheet"/><script defer="" src="hp-shop.js"></script><link href="hp-language.css" rel="stylesheet"/><script defer="" src="hp-language.js"></script></body></html>
