@@ -55,3 +55,11 @@
  .hp-inline-contact{margin:16px auto 4px!important;}
  .hp-inline-contact .hp-quick-choices a,.hp-inline-contact .hp-quick-choices img{width:38px!important;height:38px!important;}
 }
+/* Headset position on mobile shopping cart */
+@media (max-width: 700px) {
+  body:has(#checkout) .hp-quick-contact {
+    bottom: 190px !important;
+    right: 12px !important;
+  }
+}
+
