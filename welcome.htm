@@ -275,28 +275,52 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 34px !important;
     height: 34px !important;
   }
-<style>
-/* Welcome mobile: lower headset, open contacts upward */
-@media (max-width: 700px) {
+}
+</style>
 
-  .hp-mobile-image-support #hp-home-support-anchor {
-    transform: translateY(35px) !important;
+
+<style>
+/* Remove footer shadows - mobile only */
+@media (max-width: 500px) {
+  .hp-bottom-region,
+  .hp-bottom-region table,
+  .hp-bottom-region td {
+    box-shadow: none !important;
+    border: none !important;
   }
 
+  .hp-bottom-region {
+    background-image: none !important;
+  }
+}
+</style>
+
+
+<style>
+/* Welcome mobile headset position */
+@media (max-width: 700px) {
+
+  /* Move headset lower */
+  .hp-mobile-image-support #hp-home-support-anchor {
+    transform: translateY(45px) !important;
+  }
+
+  /* Keep support menu positioned around headset */
   .hp-mobile-image-support .hp-inline-contact {
     position: relative !important;
   }
 
+  /* Open contact icons upward */
   .hp-mobile-image-support .hp-quick-choices {
     position: absolute !important;
-    bottom: calc(100% + 10px) !important;
     top: auto !important;
+    bottom: calc(100% + 10px) !important;
     right: 50% !important;
     transform: translateX(50%) !important;
     flex-direction: column !important;
     width: max-content !important;
-    gap: 6px !important;
-    z-index: 20 !important;
+    gap: 7px !important;
+    z-index: 30 !important;
   }
 
   .hp-mobile-image-support .hp-quick-choices a,
@@ -304,11 +328,7 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 36px !important;
     height: 36px !important;
   }
-}
 </style>
-
-
-
 </head><body data-hp-page="home">
 <div class="hp-top-region">
 <table align="center" background="welcome_files/top_files/top_backgrnd.gif" border="0" cellpadding="0" cellspacing="0" valign="TOP" width="100%">
